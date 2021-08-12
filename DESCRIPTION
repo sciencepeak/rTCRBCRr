@@ -1,0 +1,19 @@
+Package: rTCRBCRr
+Title: Downstream Analysis of the Detected Clonotype
+Version: 1.0.0
+Authors@R: 
+    person(given = "Lizhong",
+           family = "Ding",
+           role = c("aut", "cre"),
+           email = "dinglizhongman@gmail.com",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: The goal of rTCRBCRr is to process the results from clonotyping tools such as trust, mixcr, and immunoseq to analyze the clonotype repertoire metrics.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: 
+    magrittr,
+    tidyr,
+    tidyselect
