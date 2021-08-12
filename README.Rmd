@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-[![R](https://github.com/sciencepeak/rTCRBCRr/actions/workflows/r.yml/badge.svg)](https://github.com/sciencepeak/rTCRBCRr/actions/workflows/r.yml)
+[![R](https://github.com/sciencepeak/rTCRBCRr/actions/workflows/r_github_actions_01.yml/badge.svg)](https://github.com/sciencepeak/rTCRBCRr/actions/workflows/r_github_actions_01.yml)
 
 # rTCRBCRr <img src='man/figures/logo.png' align="right" height="139" />
 
