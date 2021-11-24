@@ -71,6 +71,26 @@ usethis::use_data_raw()
 ```
 
 
+```{r}
+input_paths <- dir(system.file("extdata", package = "rTCRBCRr"), full.names = TRUE)
+input_files <- dir(system.file("extdata", package = "rTCRBCRr"), full.names = FALSE)
+input_files
+#> [1] "sample_01_report.tsv.bz2" "sample_02_report.tsv.bz2"
+#> [3] "sample_03_report.tsv.bz2"
+
+sample_names <- sub("_report.tsv.*", "", input_files)
+sample_names
+#> [1] "sample_01" "sample_02" "sample_03"
+
+raw_clonotype_dataframe_list <- lapply(input_paths, readr::read_tsv) %>%
+    magrittr::set_names(., value = sample_names)
+raw_clonotype_dataframe_list
+
+raw_trust_clonotype_dataframe <- raw_clonotype_dataframe_list[["sample_01"]]
+usethis::use_data(raw_trust_clonotype_dataframe, overwrite = T)
+```
+
+
 # Adds a CRAN package dependency to DESCRIPTION 
 
 ```{r}
@@ -98,6 +118,11 @@ devtools::build_readme()
 ```{r}
 usethis::use_mit_license()
 ```
+
+```{r}
+usethis::use_github_action("check-standard")
+```
+
 
 ```{r}
 devtools::check()
