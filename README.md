@@ -3,6 +3,8 @@
 
 [![R](https://github.com/sciencepeak/rTCRBCRr/actions/workflows/r_github_actions_01.yml/badge.svg)](https://github.com/sciencepeak/rTCRBCRr/actions/workflows/r_github_actions_01.yml)
 
+[![R-CMD-check](https://github.com/sciencepeak/rTCRBCRr/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/sciencepeak/rTCRBCRr/actions/workflows/check-standard.yaml)
+
 # rTCRBCRr <img src='man/figures/logo.png' align="right" height="139" />
 
 The goal of rTCRBCRr is to process the results from clonotyping tools
@@ -276,7 +278,7 @@ calculate_repertoire_metrics
 #>         "evenness")
 #>     output_vector
 #> }
-#> <bytecode: 0x0000000020ba4cd0>
+#> <bytecode: 0x0000000020beea78>
 #> <environment: namespace:rTCRBCRr>
 ```
 
