@@ -4,6 +4,8 @@
 #' @return A dataframe of clonotype of immunarch format
 #' @import magrittr
 #' @export
+#' @examples
+#' annotate_chain_name_and_cell_type(nonproductive_CDR3aa_removed_dataframe)
 #'
 annotate_chain_name_and_cell_type <- function(input_dataframe) {
 

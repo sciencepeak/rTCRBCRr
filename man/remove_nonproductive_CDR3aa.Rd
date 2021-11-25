@@ -15,3 +15,7 @@ A dataframe of clonotype of immunarch format
 \description{
 Clean the clonotype dataframe
 }
+\examples{
+remove_nonproductive_CDR3aa(immunarch_style_dataframe)
+
+}

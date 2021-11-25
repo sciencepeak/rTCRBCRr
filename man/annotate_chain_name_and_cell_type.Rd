@@ -15,3 +15,7 @@ A dataframe of clonotype of immunarch format
 \description{
 Annotate chain name and cell type
 }
+\examples{
+annotate_chain_name_and_cell_type(nonproductive_CDR3aa_removed_dataframe)
+
+}

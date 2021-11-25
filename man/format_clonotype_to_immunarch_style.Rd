@@ -20,3 +20,7 @@ a clonotype dataframe of immunarch format
 \description{
 Convert clonotype dataframe to immunarch format
 }
+\examples{
+format_clonotype_to_immunarch_style(raw_trust_clonotype_dataframe, clonotyping_tool = "trust")
+
+}

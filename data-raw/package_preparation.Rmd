@@ -28,6 +28,8 @@ library("magrittr")
 # library("R.utils") # provide bzip2 function
 ```
 
+https://mvuorre.github.io/exampleRPackage/
+
 # Initial commit using Git (for Windows)
 
 ```{r}
@@ -64,12 +66,21 @@ sticker(p, package=package_name, p_size=20, s_x=1, s_y=.75, s_width=1.3, s_heigh
 usethis::use_logo(image_path)
 ```
 
+# Adds a CRAN package dependency to DESCRIPTION 
+
+```{r}
+usethis::use_package("magrittr")
+usethis::use_package("tidyr")
+usethis::use_package("tidyselect")
+```
+
 # Add the directory for package data preparation codes
 
 ```{r}
 usethis::use_data_raw()
 ```
 
+# prepare internal data for @examples tag of each exported function.
 
 ```{r}
 input_paths <- dir(system.file("extdata", package = "rTCRBCRr"), full.names = TRUE)
@@ -84,20 +95,54 @@ sample_names
 
 raw_clonotype_dataframe_list <- lapply(input_paths, readr::read_tsv) %>%
     magrittr::set_names(., value = sample_names)
-raw_clonotype_dataframe_list
-
-raw_trust_clonotype_dataframe <- raw_clonotype_dataframe_list[["sample_01"]]
-usethis::use_data(raw_trust_clonotype_dataframe, overwrite = T)
 ```
 
-
-# Adds a CRAN package dependency to DESCRIPTION 
+# Prepare individual example data.
 
 ```{r}
-usethis::use_package("magrittr")
-usethis::use_package("tidyr")
-usethis::use_package("tidyselect")
+raw_trust_clonotype_dataframe <- raw_clonotype_dataframe_list[["sample_01"]]
+
+immunarch_style_dataframe <- raw_trust_clonotype_dataframe %>%
+    format_clonotype_to_immunarch_style(., clonotyping_tool = "trust")
+
+nonproductive_CDR3aa_removed_dataframe <- immunarch_style_dataframe %>%
+    remove_nonproductive_CDR3aa
+
+chain_separated_dataframe <- nonproductive_CDR3aa_removed_dataframe %>%
+    annotate_chain_name_and_cell_type
+
+convergent_clonotype_merged_dataframe <- chain_separated_dataframe %>%
+    merge_convergent_clonotype
 ```
+
+# Prepare a list of processed dataframes.
+
+```{r}
+the_divergent_clonotype_dataframe_list <- raw_clonotype_dataframe_list %>%
+    lapply(., format_clonotype_to_immunarch_style, clonotyping_tool = "trust") %>%
+    lapply(., remove_nonproductive_CDR3aa) %>%
+    lapply(., annotate_chain_name_and_cell_type) %>%
+    lapply(., merge_convergent_clonotype)
+
+all_sample_all_chain_all_metrics_wide_format_dataframe_list <- the_divergent_clonotype_dataframe_list %>%
+    lapply(., compute_repertoire_metrics_by_chain_name)
+
+all_sample_all_chain_all_metrics_wide_format_dataframe <- all_sample_all_chain_all_metrics_wide_format_dataframe_list %>%
+    combine_all_sample_repertoire_metrics
+```
+
+
+```{r}
+usethis::use_data(raw_trust_clonotype_dataframe, overwrite = T)
+usethis::use_data(immunarch_style_dataframe, overwrite = T)
+usethis::use_data(nonproductive_CDR3aa_removed_dataframe, overwrite = T)
+usethis::use_data(chain_separated_dataframe, overwrite = T)
+usethis::use_data(convergent_clonotype_merged_dataframe, overwrite = T)
+usethis::use_data(all_sample_all_chain_all_metrics_wide_format_dataframe_list, overwrite = T)
+usethis::use_data(all_sample_all_chain_all_metrics_wide_format_dataframe, overwrite = T)
+```
+
+
 
 # Copy R scripts
 # Copy inst/extdata files
@@ -116,6 +161,12 @@ devtools::build_readme()
 ```
 
 ```{r}
+# usethis::use_vignette("Quick_Start")
+devtools::build_vignettes()
+```
+
+
+```{r}
 usethis::use_mit_license()
 ```
 
@@ -129,10 +180,12 @@ devtools::check()
 ```
 
 ```{r}
-load_all()
+devtools::load_all()
 ```
 
-
+```{r}
+devtools::build()
+```
 
 
 ```{r}

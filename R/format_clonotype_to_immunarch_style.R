@@ -140,6 +140,8 @@ parse_trust4 <- function(input_clone_dataframe) {
 #' @import magrittr
 #' @return a clonotype dataframe of immunarch format
 #' @export
+#' @examples
+#' format_clonotype_to_immunarch_style(raw_trust_clonotype_dataframe, clonotyping_tool = "trust")
 #'
 format_clonotype_to_immunarch_style <- function(input_dataframe, clonotyping_tool = "trust") {
     # Immunarch data format https://immunarch.com/articles/v2_data.html

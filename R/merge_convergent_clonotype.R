@@ -3,6 +3,7 @@
 #' @param a_dataframe a dataframe
 #' @return a dataframe
 #' @import magrittr
+#'
 summarize_convergence_function <- function(a_dataframe) {
     # A CDR3.aa might have different CDR3.nt, V.name, D.name, or J.name.
     # Select the most frequent elements.
@@ -40,6 +41,8 @@ summarize_convergence_function <- function(a_dataframe) {
 #' merge_convergent_clonotype_function(an_immunarch_format_clonotype_dataframe)
 #' @import magrittr
 #' @export
+#' @examples
+#' merge_convergent_clonotype(chain_separated_dataframe)
 #'
 merge_convergent_clonotype <- function(input_dataframe) {
 

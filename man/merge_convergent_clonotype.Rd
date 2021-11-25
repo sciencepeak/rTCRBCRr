@@ -16,3 +16,7 @@ merge_convergent_clonotype_function(an_immunarch_format_clonotype_dataframe)
 \description{
 Merge convergent clonotype
 }
+\examples{
+merge_convergent_clonotype(chain_separated_dataframe)
+
+}

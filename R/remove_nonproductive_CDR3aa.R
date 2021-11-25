@@ -3,6 +3,8 @@
 #' @param input_dataframe A dataframe of clonotype of immunarch format
 #' @return A dataframe of clonotype of immunarch format
 #' @export
+#' @examples
+#' remove_nonproductive_CDR3aa(immunarch_style_dataframe)
 #'
 remove_nonproductive_CDR3aa <- function(input_dataframe) {
     # get the index that are not desired when we want productive CD3R.aa only.
