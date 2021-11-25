@@ -66,6 +66,13 @@ sticker(p, package=package_name, p_size=20, s_x=1, s_y=.75, s_width=1.3, s_heigh
 usethis::use_logo(image_path)
 ```
 
+The helper use_r() creates and/or opens a script below R/. It really shines in a more mature package, when navigating between .R files and the associated test file.
+
+```{r}
+use_r()
+```
+
+
 # Adds a CRAN package dependency to DESCRIPTION 
 
 ```{r}
@@ -143,7 +150,13 @@ usethis::use_data(all_sample_all_chain_all_metrics_wide_format_dataframe_list, o
 usethis::use_data(all_sample_all_chain_all_metrics_wide_format_dataframe, overwrite = T)
 ```
 
+# The document for the package itself was created from the description file.
 
+https://combine-australia.github.io/r-pkg-dev/other-documentation.html
+
+```{r}
+usethis::use_package_doc()
+```
 
 # Copy R scripts
 # Copy inst/extdata files
@@ -167,6 +180,8 @@ devtools::build_vignettes()
 ```
 
 
+
+
 ```{r}
 usethis::use_mit_license()
 ```
@@ -183,6 +198,11 @@ devtools::check()
 ```{r}
 devtools::load_all()
 ```
+
+```{r}
+devtools::install()
+```
+
 
 ```{r}
 devtools::build()

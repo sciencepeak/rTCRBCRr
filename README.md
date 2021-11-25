@@ -277,7 +277,7 @@ calculate_repertoire_metrics
 #>         "evenness")
 #>     output_vector
 #> }
-#> <bytecode: 0x0000000020ba06d0>
+#> <bytecode: 0x0000000020b828c8>
 #> <environment: namespace:rTCRBCRr>
 ```
 

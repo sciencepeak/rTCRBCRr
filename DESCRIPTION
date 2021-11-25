@@ -7,7 +7,9 @@ Authors@R:
            role = c("aut", "cre"),
            email = "dinglizhongman@gmail.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: The goal of rTCRBCRr is to process the results from clonotyping tools such as trust, mixcr, and immunoseq to analyze the clonotype repertoire metrics.
+Description: The trust, mixcr, and immunoseq identify the clonotypes.
+    The goal of rTCRBCRr is to process the results from these clonotyping tools,
+    and analyze the clonotype repertoire metrics.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
