@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-[![R](https://github.com/sciencepeak/rTCRBCRr/actions/workflows/r_github_actions_01.yml/badge.svg)](https://github.com/sciencepeak/rTCRBCRr/actions/workflows/r_github_actions_01.yml)
+[![R](https://github.com/sciencepeak/rTCRBCRr/actions/workflows/r.yml/badge.svg)](https://github.com/sciencepeak/rTCRBCRr/actions/workflows/r.yml)
 [![R-CMD-check](https://github.com/sciencepeak/rTCRBCRr/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/sciencepeak/rTCRBCRr/actions/workflows/check-standard.yaml)
 
 # rTCRBCRr <img src='man/figures/logo.png' align="right" height="139" />
@@ -277,7 +277,7 @@ calculate_repertoire_metrics
 #>         "evenness")
 #>     output_vector
 #> }
-#> <bytecode: 0x0000000020c62e50>
+#> <bytecode: 0x0000000020ba06d0>
 #> <environment: namespace:rTCRBCRr>
 ```
 

@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-[![R](https://github.com/sciencepeak/rTCRBCRr/actions/workflows/r_github_actions_01.yml/badge.svg)](https://github.com/sciencepeak/rTCRBCRr/actions/workflows/r_github_actions_01.yml)  [![R-CMD-check](https://github.com/sciencepeak/rTCRBCRr/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/sciencepeak/rTCRBCRr/actions/workflows/check-standard.yaml)
+[![R](https://github.com/sciencepeak/rTCRBCRr/actions/workflows/r.yml/badge.svg)](https://github.com/sciencepeak/rTCRBCRr/actions/workflows/r.yml) [![R-CMD-check](https://github.com/sciencepeak/rTCRBCRr/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/sciencepeak/rTCRBCRr/actions/workflows/check-standard.yaml)
 
 # rTCRBCRr <img src='man/figures/logo.png' align="right" height="139" />
 
