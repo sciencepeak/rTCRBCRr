@@ -14,7 +14,22 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Usage
+The goal of rTCRBCRr is to process the results from clonotyping tools such as trust, mixcr, and immunoseq to analyze the clonotype repertoire metrics
+
+## Installation
+
+You can **NOT** install the released version of rTCRBCRr from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("rTCRBCRr")
+```
+
+You can **ONLY** install the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("sciencepeak/rTCRBCRr")
+```
 
 ## Example code
 
