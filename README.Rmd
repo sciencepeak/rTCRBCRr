@@ -79,7 +79,7 @@ the_divergent_clonotype_dataframe <- raw_clonotype_dataframe_list[["sample_01"]]
     annotate_chain_name_and_cell_type %>%
     merge_convergent_clonotype
 
-# Then the only one sample should be put into a list, element of which use the sample name,
+# Then the only one sample should be put into a list, element of which uses the sample name,
 # because the later step need a named list of data frames as input.
 divergent_clonotype_dataframe_list <- list(sample_01 = the_divergent_clonotype_dataframe)
 
