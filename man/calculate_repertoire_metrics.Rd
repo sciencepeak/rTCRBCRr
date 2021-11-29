@@ -15,3 +15,8 @@ a named vector
 \description{
 calculate_repertoire_metrics
 }
+\examples{
+a_named_vector <- c("apple" = 1, "banana" = 3, "cranberry" = 7, "date" = 10)
+calculate_repertoire_metrics(a_named_vector)
+
+}

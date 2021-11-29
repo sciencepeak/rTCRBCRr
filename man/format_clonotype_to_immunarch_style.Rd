@@ -4,10 +4,7 @@
 \alias{format_clonotype_to_immunarch_style}
 \title{Convert clonotype dataframe to immunarch format}
 \usage{
-format_clonotype_to_immunarch_style(
-  input_dataframe,
-  clonotyping_tool = "trust"
-)
+format_clonotype_to_immunarch_style(input_dataframe, clonotyping_tool)
 }
 \arguments{
 \item{input_dataframe}{a clonotype dataframe from an upstream clonotyping tool}
@@ -21,6 +18,6 @@ a clonotype dataframe of immunarch format
 Convert clonotype dataframe to immunarch format
 }
 \examples{
-format_clonotype_to_immunarch_style(raw_trust_clonotype_dataframe, clonotyping_tool = "trust")
+format_clonotype_to_immunarch_style(raw_trust_clonotype_dataframe, "trust")
 
 }

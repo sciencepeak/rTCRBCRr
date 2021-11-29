@@ -65,6 +65,27 @@ The tidy-up consists of four steps, namely four functions:
 3. annotate_chain_name_and_cell_type 
 4. merge_convergent_clonotype
 
+
+```{r}
+# If you only want to test one sample, you can process the sample as follows.
+the_divergent_clonotype_dataframe <- raw_clonotype_dataframe_list[["sample_01"]] %>%
+    format_clonotype_to_immunarch_style(., clonotyping_tool = "trust") %>%
+    remove_nonproductive_CDR3aa %>%
+    annotate_chain_name_and_cell_type %>%
+    merge_convergent_clonotype
+
+# Then the only one sample should be put into a list, element of which use the sample name,
+# because the later step need a named list of data frames as input.
+divergent_clonotype_dataframe_list <- list(sample_01 = the_divergent_clonotype_dataframe)
+
+# Otherwise, normally you will have multiple samples, then functional style of processing is preferred as follows.
+divergent_clonotype_dataframe_list <- raw_clonotype_dataframe_list %>%
+    lapply(., format_clonotype_to_immunarch_style, clonotyping_tool = "trust") %>%
+    lapply(., remove_nonproductive_CDR3aa) %>%
+    lapply(., annotate_chain_name_and_cell_type) %>%
+    lapply(., merge_convergent_clonotype)
+```
+
 #### Calculate and merge repertoire metrics for each sample in the list
 
 This step consists of two functions.
@@ -73,12 +94,6 @@ This step consists of two functions.
 2. combine_all_sample_repertoire_metrics
 
 ```{r}
-divergent_clonotype_dataframe_list <- raw_clonotype_dataframe_list %>%
-    lapply(., format_clonotype_to_immunarch_style, clonotyping_tool = "trust") %>%
-    lapply(., remove_nonproductive_CDR3aa) %>%
-    lapply(., annotate_chain_name_and_cell_type) %>%
-    lapply(., merge_convergent_clonotype)
-
 all_sample_all_chain_all_metrics_wide_dataframe <- divergent_clonotype_dataframe_list %>%
     lapply(., compute_repertoire_metrics_by_chain_name) %>%
     combine_all_sample_repertoire_metrics
@@ -113,8 +128,12 @@ $$
 clonality\ =\ 1\ -\ Pielou\prime s\ evenness
 $$
 
-The internal function `calculate_repertoire_metrics` is essential to implement the repertoire metrics formulas
+The function `calculate_repertoire_metrics` is essential to implement the repertoire metrics formulas
 
 ```{r}
 calculate_repertoire_metrics
 ```
+
+## Acknowledgements
+
+The [hexagon](https://github.com/terinjokes/StickersStandard) logo of the package was created with the help of the package [hexSticker](https://github.com/GuangchuangYu/hexSticker). The math formula was written with the help of recognition tool [MyScript](https://webdemo.myscript.com/). The latex formula in markdown was inspired by [rmd4sci](https://rmd4sci.njtierney.com/math). The code in this study was inspired by the [UCSB R tutorial note](http://traits-dgs.nceas.ucsb.edu/workspace/r/r-tutorial-for-measuring-species-diversity/Measuring Diversity in R.pdf/attachment_download/file), [LymphoSeq script](https://rdrr.io/bioc/LymphoSeq/src/R/clonality.R), and [vegan package](https://cran.r-project.org/web/packages/vegan/vignettes/diversity-vegan.pdf).

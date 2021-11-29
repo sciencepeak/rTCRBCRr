@@ -141,9 +141,9 @@ parse_trust4 <- function(input_clone_dataframe) {
 #' @return a clonotype dataframe of immunarch format
 #' @export
 #' @examples
-#' format_clonotype_to_immunarch_style(raw_trust_clonotype_dataframe, clonotyping_tool = "trust")
+#' format_clonotype_to_immunarch_style(raw_trust_clonotype_dataframe, "trust")
 #'
-format_clonotype_to_immunarch_style <- function(input_dataframe, clonotyping_tool = "trust") {
+format_clonotype_to_immunarch_style <- function(input_dataframe, clonotyping_tool) {
     # Immunarch data format https://immunarch.com/articles/v2_data.html
     # immunarch comes with its own data format, including tab-delimited columns that can be specified as follows:
     # "Clones" - count or number of barcodes (events, UMIs) or reads;

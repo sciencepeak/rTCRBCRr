@@ -27,27 +27,6 @@ You can **ONLY** install the development version from
 devtools::install_github("sciencepeak/rTCRBCRr")
 ```
 
-The goal of rTCRBCRr is to process the results from clonotyping tools
-such as trust, mixcr, and immunoseq to analyze the clonotype repertoire
-metrics
-
-## Installation
-
-You can **NOT** install the released version of rTCRBCRr from
-[CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("rTCRBCRr")
-```
-
-You can **ONLY** install the development version from
-[GitHub](https://github.com/) with:
-
-``` r
-# install.packages("devtools")
-devtools::install_github("sciencepeak/rTCRBCRr")
-```
-
 ## Example code
 
 ### Attach packages
@@ -130,6 +109,26 @@ The tidy-up consists of four steps, namely four functions:
 3.  annotate_chain_name_and_cell_type
 4.  merge_convergent_clonotype
 
+``` r
+# If you only want to test one sample, you can process the sample as follows.
+the_divergent_clonotype_dataframe <- raw_clonotype_dataframe_list[["sample_01"]] %>%
+    format_clonotype_to_immunarch_style(., clonotyping_tool = "trust") %>%
+    remove_nonproductive_CDR3aa %>%
+    annotate_chain_name_and_cell_type %>%
+    merge_convergent_clonotype
+
+# Then the only one sample should be put into a list, element of which use the sample name,
+# because the later step need a named list of data frames as input.
+divergent_clonotype_dataframe_list <- list(sample_01 = the_divergent_clonotype_dataframe)
+
+# Otherwise, normally you will have multiple samples, then functional style of processing is preferred as follows.
+divergent_clonotype_dataframe_list <- raw_clonotype_dataframe_list %>%
+    lapply(., format_clonotype_to_immunarch_style, clonotyping_tool = "trust") %>%
+    lapply(., remove_nonproductive_CDR3aa) %>%
+    lapply(., annotate_chain_name_and_cell_type) %>%
+    lapply(., merge_convergent_clonotype)
+```
+
 #### Calculate and merge repertoire metrics for each sample in the list
 
 This step consists of two functions.
@@ -138,12 +137,6 @@ This step consists of two functions.
 2.  combine_all_sample_repertoire_metrics
 
 ``` r
-divergent_clonotype_dataframe_list <- raw_clonotype_dataframe_list %>%
-    lapply(., format_clonotype_to_immunarch_style, clonotyping_tool = "trust") %>%
-    lapply(., remove_nonproductive_CDR3aa) %>%
-    lapply(., annotate_chain_name_and_cell_type) %>%
-    lapply(., merge_convergent_clonotype)
-
 all_sample_all_chain_all_metrics_wide_dataframe <- divergent_clonotype_dataframe_list %>%
     lapply(., compute_repertoire_metrics_by_chain_name) %>%
     combine_all_sample_repertoire_metrics
@@ -256,8 +249,8 @@ clonality\\ =\\ 1\\ -\\ Pielou\\prime s\\ evenness
 clonality\ =\ 1\ -\ Pielou\prime s\ evenness
 ")
 
-The internal function `calculate_repertoire_metrics` is essential to
-implement the repertoire metrics formulas
+The function `calculate_repertoire_metrics` is essential to implement
+the repertoire metrics formulas
 
 ``` r
 calculate_repertoire_metrics
@@ -277,7 +270,7 @@ calculate_repertoire_metrics
 #>         "evenness")
 #>     output_vector
 #> }
-#> <bytecode: 0x0000000020b828c8>
+#> <bytecode: 0x000000002083e7c0>
 #> <environment: namespace:rTCRBCRr>
 ```
 

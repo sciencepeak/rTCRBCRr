@@ -3,6 +3,9 @@
 #' @param named_species_vector a named vector
 #' @return a named vector
 #' @export
+#' @examples
+#' a_named_vector <- c("apple" = 1, "banana" = 3, "cranberry" = 7, "date" = 10)
+#' calculate_repertoire_metrics(a_named_vector)
 #'
 calculate_repertoire_metrics <- function(named_species_vector) {
 
