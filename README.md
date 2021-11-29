@@ -110,7 +110,7 @@ The tidy-up consists of four steps, namely four functions:
 4.  merge_convergent_clonotype
 
 ``` r
-# If you only want to test one sample, you can process the sample as follows.
+# If you only want to test one sample, you can process the only sample as follows.
 the_divergent_clonotype_dataframe <- raw_clonotype_dataframe_list[["sample_01"]] %>%
     format_clonotype_to_immunarch_style(., clonotyping_tool = "trust") %>%
     remove_nonproductive_CDR3aa %>%
@@ -121,7 +121,8 @@ the_divergent_clonotype_dataframe <- raw_clonotype_dataframe_list[["sample_01"]]
 # because the later step need a named list of data frames as input.
 divergent_clonotype_dataframe_list <- list(sample_01 = the_divergent_clonotype_dataframe)
 
-# Otherwise, normally you will have multiple samples, then functional style of processing is preferred as follows.
+# Otherwise, normally you will have multiple samples,
+# then functional style of processing is preferred as follows.
 divergent_clonotype_dataframe_list <- raw_clonotype_dataframe_list %>%
     lapply(., format_clonotype_to_immunarch_style, clonotyping_tool = "trust") %>%
     lapply(., remove_nonproductive_CDR3aa) %>%
@@ -270,7 +271,7 @@ calculate_repertoire_metrics
 #>         "evenness")
 #>     output_vector
 #> }
-#> <bytecode: 0x000000002083e7c0>
+#> <bytecode: 0x00000000207cef28>
 #> <environment: namespace:rTCRBCRr>
 ```
 

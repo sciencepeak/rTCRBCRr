@@ -67,7 +67,7 @@ The tidy-up consists of four steps, namely four functions:
 
 
 ```{r}
-# If you only want to test one sample, you can process the sample as follows.
+# If you only want to test one sample, you can process the only sample as follows.
 the_divergent_clonotype_dataframe <- raw_clonotype_dataframe_list[["sample_01"]] %>%
     format_clonotype_to_immunarch_style(., clonotyping_tool = "trust") %>%
     remove_nonproductive_CDR3aa %>%
@@ -78,7 +78,8 @@ the_divergent_clonotype_dataframe <- raw_clonotype_dataframe_list[["sample_01"]]
 # because the later step need a named list of data frames as input.
 divergent_clonotype_dataframe_list <- list(sample_01 = the_divergent_clonotype_dataframe)
 
-# Otherwise, normally you will have multiple samples, then functional style of processing is preferred as follows.
+# Otherwise, normally you will have multiple samples,
+# then functional style of processing is preferred as follows.
 divergent_clonotype_dataframe_list <- raw_clonotype_dataframe_list %>%
     lapply(., format_clonotype_to_immunarch_style, clonotyping_tool = "trust") %>%
     lapply(., remove_nonproductive_CDR3aa) %>%
@@ -137,3 +138,4 @@ calculate_repertoire_metrics
 ## Acknowledgements
 
 The [hexagon](https://github.com/terinjokes/StickersStandard) logo of the package was created with the help of the package [hexSticker](https://github.com/GuangchuangYu/hexSticker). The math formula was written with the help of recognition tool [MyScript](https://webdemo.myscript.com/). The latex formula in markdown was inspired by [rmd4sci](https://rmd4sci.njtierney.com/math). The code in this study was inspired by the [UCSB R tutorial note](http://traits-dgs.nceas.ucsb.edu/workspace/r/r-tutorial-for-measuring-species-diversity/Measuring Diversity in R.pdf/attachment_download/file), [LymphoSeq script](https://rdrr.io/bioc/LymphoSeq/src/R/clonality.R), and [vegan package](https://cran.r-project.org/web/packages/vegan/vignettes/diversity-vegan.pdf).
+
