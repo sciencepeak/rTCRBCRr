@@ -67,7 +67,7 @@ The tidy-up consists of four steps, namely four functions:
 
 1. format_clonotype_to_immunarch_style
 2. remove_nonproductive_CDR3aa
-3. annotate_chain_name_and_cell_type 
+3. annotate_chain_name_and_isotype_name 
 4. merge_convergent_clonotype
 
 
@@ -76,7 +76,7 @@ The tidy-up consists of four steps, namely four functions:
 the_divergent_clonotype_dataframe <- raw_clonotype_dataframe_list[["sample_01"]] %>%
     format_clonotype_to_immunarch_style(., clonotyping_tool = "trust") %>%
     remove_nonproductive_CDR3aa %>%
-    annotate_chain_name_and_cell_type %>%
+    annotate_chain_name_and_isotype_name %>%
     merge_convergent_clonotype
 
 # Then the only one sample should be put into a list, element of which uses the sample name,
@@ -88,7 +88,7 @@ divergent_clonotype_dataframe_list <- list(sample_01 = the_divergent_clonotype_d
 divergent_clonotype_dataframe_list <- raw_clonotype_dataframe_list %>%
     lapply(., format_clonotype_to_immunarch_style, clonotyping_tool = "trust") %>%
     lapply(., remove_nonproductive_CDR3aa) %>%
-    lapply(., annotate_chain_name_and_cell_type) %>%
+    lapply(., annotate_chain_name_and_isotype_name) %>%
     lapply(., merge_convergent_clonotype)
 ```
 

@@ -8,9 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-The trust, mixcr, and immunoseq identify the clonotypes.
-    The goal of rTCRBCRr is to process the results from these clonotyping tools,
-    and analyze the clonotype repertoire metrics.
+The trust, mixcr, and immunoseq identify the clonotypes. The goal of rTCRBCRr is to process the results from these clonotyping tools, and analyze the clonotype repertoire metrics.
 }
 \author{
 \strong{Maintainer}: Lizhong Ding \email{dinglizhongman@gmail.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})

@@ -1,13 +1,13 @@
-#' Annotate chain name and cell type
+#' Annotate chain name and isotype name
 #'
 #' @param input_dataframe A dataframe of clonotype of immunarch format
 #' @return A dataframe of clonotype of immunarch format
 #' @import magrittr
 #' @export
 #' @examples
-#' annotate_chain_name_and_cell_type(nonproductive_CDR3aa_removed_dataframe)
+#' annotate_chain_name_and_isotype_name(nonproductive_CDR3aa_removed_dataframe)
 #'
-annotate_chain_name_and_cell_type <- function(input_dataframe) {
+annotate_chain_name_and_isotype_name <- function(input_dataframe) {
 
 
     # Prepare a function to handle TCR and BCR chains.
@@ -40,15 +40,15 @@ annotate_chain_name_and_cell_type <- function(input_dataframe) {
     # Ensure the multiple chain in one clone case is eliminated from the data frame.
     stopifnot(nrow(prudential_dataframe) == length(unique_chain_labels))
 
+    isotype_labels <- prudential_dataframe$C.name %>%
+        replace(., . == ".", NA) %>%
+        gsub(pattern = "\\d+", replacement = "", x = .)
+
     # Annotate chain names and cell type names
     labelled_dataframe <- prudential_dataframe %>%
+        inset(., "C.name", value = NULL) %>%
         inset(., "chain_name", value = unique_chain_labels) %>%
-        inset(.,
-              "cell_type",
-              value = .$chain_name %>%
-                  substr(., 1, 2) %>%
-                  vapply(., function(x) switch(x, "IG" = "B_cell", "TR" = "T_cell"), character(1))
-        ) %>%
+        inset(., "isotype_name", value = isotype_labels) %>%
         calibrate_proportion_by_clones %>%
         magrittr::set_rownames(., value = NULL)
 

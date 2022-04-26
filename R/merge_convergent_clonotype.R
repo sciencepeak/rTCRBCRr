@@ -5,18 +5,18 @@
 #' @import magrittr
 #'
 summarize_convergence_function <- function(a_dataframe) {
-    # A CDR3.aa might have different CDR3.nt, V.name, D.name, or J.name.
+    # A CDR3.aa might have different CDR3.nt, V.name, D.name, J.name, or isotype_name
     # Select the most frequent elements.
     processed_vector <- with(
         a_dataframe, {
             c(
                 Clones = Clones %>% sum %>% as.character,
                 Proportion = Proportion %>% sum %>% as.character,
-                CDR3.nt = CDR3.nt %>% table %>% which.max %>% names,
+                CDR3.nt = CDR3.nt[which.max(Clones)],
                 CDR3.aa = CDR3.aa %>% unique,
-                V.name = V.name %>% table %>% which.max %>% names,
-                D.name = D.name %>% table %>% which.max %>% names,
-                J.name = J.name %>% table %>% which.max %>% names,
+                V.name = V.name[which.max(Clones)],
+                D.name = D.name[which.max(Clones)],
+                J.name = J.name[which.max(Clones)],
                 V.end = NA,
                 D.start = NA,
                 D.end = NA,
@@ -26,11 +26,14 @@ summarize_convergence_function <- function(a_dataframe) {
                 DJ.ins = NA,
                 Sequence = NA,
                 chain_name = chain_name %>% unique,
-                cell_type = cell_type %>% unique
+                isotype_name = ifelse(
+                    all(is.na(isotype_name)),
+                    NA,
+                    isotype_name[!is.na(isotype_name)][which.max(Clones[!is.na(isotype_name)])]
+                )
             )
         }
     )
-    # stopifnot(nrow(processed_dataframe) == 1)
     processed_vector
 }
 
@@ -49,11 +52,16 @@ merge_convergent_clonotype <- function(input_dataframe) {
     if (nrow(input_dataframe) == 0) {
         ouput_dataframe <- input_dataframe
     } else {
-        summarized_convergence_list <- by(
+        CDR3aa_chain_combination_list <- split(
             input_dataframe,
             list(input_dataframe$CDR3.aa, input_dataframe$chain_name),
-            summarize_convergence_function
+            drop = T
         )
+
+        # df1 <- CDR3aa_chain_combination_list[["CQKYNSAPRTF.IGK"]]
+        # df2 <- CDR3aa_chain_combination_list[["CAGRYGGNSYYFDYW.IGH"]]
+        # df3 <- CDR3aa_chain_combination_list[["CARAAAYCGGDCSLSWFDPW.IGH"]]
+        summarized_convergence_list <- lapply(CDR3aa_chain_combination_list, summarize_convergence_function)
 
         summarized_convergence_dataframe <- do.call(rbind, summarized_convergence_list) %>%
             as.data.frame %>%

@@ -1,7 +1,7 @@
 Package: rTCRBCRr
 Title: Downstream Analysis of the Detected Clonotype
 Version: 0.1.0
-Authors@R: 
+Authors@R:
     person(given = "Lizhong",
            family = "Ding",
            role = c("aut", "cre"),
@@ -15,14 +15,14 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
-Imports: 
+Imports:
     magrittr,
     readr,
     tidyr,
     tidyselect
-Depends: 
+Depends:
     R (>= 2.10)
-Suggests: 
+Suggests:
     rmarkdown,
     knitr
 VignetteBuilder: knitr

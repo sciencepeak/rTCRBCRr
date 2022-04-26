@@ -11,7 +11,8 @@ parse_mixcr <- function(input_clone_dataframe) {
                                 "CDR3.aa", "V.name", "D.name",
                                 "J.name", "V.end", "D.start",
                                 "D.end", "J.start", "VJ.ins",
-                                "VD.ins", "DJ.ins", "Sequence")
+                                "VD.ins", "DJ.ins", "Sequence",
+                                "C.name")
 
     empty_immunarch_dataframe <- rep(NA, times = length(immunarch_header_names)) %>%
         as.list %>%
@@ -41,7 +42,8 @@ parse_mixcr <- function(input_clone_dataframe) {
             VJ.ins = rep(NA, times = nrow(input_clone_dataframe)),
             VD.ins  = rep(NA, times = nrow(input_clone_dataframe)),
             DJ.ins = rep(NA, times = nrow(input_clone_dataframe)),
-            Sequence = rep(NA, times = nrow(input_clone_dataframe))
+            Sequence = rep(NA, times = nrow(input_clone_dataframe)),
+            C.name = input_clone_dataframe$allCHitsWithScore %>% replace(., (. == "") | is.na(.), "*")
         )
     }
 
@@ -62,7 +64,8 @@ parse_immunoseq <- function(input_clone_dataframe) {
                                 "CDR3.aa", "V.name", "D.name",
                                 "J.name", "V.end", "D.start",
                                 "D.end", "J.start", "VJ.ins",
-                                "VD.ins", "DJ.ins", "Sequence")
+                                "VD.ins", "DJ.ins", "Sequence",
+                                "C.name")
 
     empty_immunarch_dataframe <- rep(NA, times = length(immunarch_header_names)) %>%
         as.list %>%
@@ -91,7 +94,8 @@ parse_immunoseq <- function(input_clone_dataframe) {
             VJ.ins = rep(NA, times = nrow(input_clone_dataframe)),
             VD.ins  = rep(NA, times = nrow(input_clone_dataframe)),
             DJ.ins = rep(NA, times = nrow(input_clone_dataframe)),
-            Sequence = rep(NA, times = nrow(input_clone_dataframe))
+            Sequence = rep(NA, times = nrow(input_clone_dataframe)),
+            C.name = rep(NA, times = nrow(input_clone_dataframe))
         )
     }
 
@@ -104,12 +108,21 @@ parse_immunoseq <- function(input_clone_dataframe) {
 #'
 #' @return A dataframe of immunarch format
 #' @import magrittr
+#' @importFrom stats setNames
 #'
 parse_trust4 <- function(input_clone_dataframe) {
 
+    # Ensure the column names are not changed in the future trust4 version.
+    stopifnot(
+        colnames(input_clone_dataframe) == c("#count", "frequency", "CDR3nt", "CDR3aa", "V", "D", "J", "C", "cid")
+    )
+
     raw_format_dataframe <- input_clone_dataframe %>%
-        .[, 1:7] %>%
-        magrittr::set_names(., value = c("Clones", "Proportion", "CDR3.nt", "CDR3.aa", "V.name", "D.name", "J.name"))
+        .[, c("#count", "frequency", "CDR3nt", "CDR3aa", "V", "D", "J"), drop = F] %>%
+        setNames(., c("Clones", "Proportion", "CDR3.nt", "CDR3.aa", "V.name", "D.name", "J.name"))
+
+    C_name_dataframe <- input_clone_dataframe[, "C", drop = F] %>%
+        setNames(., "C.name")
 
     input_clone_dataframe_row_number <- nrow(input_clone_dataframe)
 
@@ -126,7 +139,8 @@ parse_trust4 <- function(input_clone_dataframe) {
 
     formatted_dataframe <- cbind.data.frame(
         raw_format_dataframe,
-        other_immunarch_field_dataframe
+        other_immunarch_field_dataframe,
+        C_name_dataframe
     )
 
     formatted_dataframe

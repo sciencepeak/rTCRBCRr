@@ -45,58 +45,60 @@ input_files <- dir(system.file("extdata", package = "rTCRBCRr"), full.names = FA
 input_files
 #> [1] "sample_01_report.tsv.bz2" "sample_02_report.tsv.bz2"
 #> [3] "sample_03_report.tsv.bz2"
+
 sample_names <- sub("_report.tsv.*", "", input_files)
 sample_names
 #> [1] "sample_01" "sample_02" "sample_03"
+
 raw_clonotype_dataframe_list <- lapply(input_paths, readr::read_tsv) %>%
     magrittr::set_names(., value = sample_names)
 raw_clonotype_dataframe_list
 #> $sample_01
 #> # A tibble: 622 x 9
-#>    `#count` frequency CDR3nt           CDR3aa     V      D     J     C     cid  
-#>       <dbl>     <dbl> <chr>            <chr>      <chr>  <chr> <chr> <chr> <chr>
-#>  1      377    0.113  TGTCTACAGCATAAT~ CLQHNTHPY~ IGKV1~ .     IGKJ~ IGKC  asse~
-#>  2      297    0.0889 TGCATGCAACGTATA~ CMQRIEFPS~ IGKV2~ .     .     .     asse~
-#>  3      277    0.0829 TGCATGCAAGCTCTA~ CMQALQTPR~ IGKV2~ .     IGKJ~ IGKC  asse~
-#>  4      230    0.0688 TGTCAACAGCTTAAT~ CQQLNSYRTF IGKV1~ .     IGKJ~ IGKC  asse~
-#>  5      209    0.0625 TGTCAACAGCTTAAT~ CQQLNSYPR~ IGKV1~ .     IGKJ~ IGKC  asse~
-#>  6      108    0.0323 TGCCAACAGTATAAT~ out_of_fr~ IGKV1~ .     IGKJ~ IGKC  asse~
-#>  7      107    0.0320 TGCTGCTCATATGCA~ CCSYAGSYT~ IGLV2~ .     IGLJ~ IGLC  asse~
-#>  8       86    0.0257 TGTCAGGCGTGGGAC~ CQAWDSSTY~ IGLV3~ .     IGLJ~ IGLC  asse~
-#>  9       83    0.0911 TGTGGGAATAACAAT~ CGNNNARLMF TRAV1~ .     TRAJ~ .     asse~
-#> 10       68    0.0738 TGTTGAGCAAATCAT~ C_ANHSVSS~ TRAV2~ .     TRAJ~ .     asse~
+#>    `#count` frequency CDR3nt                CDR3aa V     D     J     C     cid  
+#>       <dbl>     <dbl> <chr>                 <chr>  <chr> <chr> <chr> <chr> <chr>
+#>  1      377    0.113  TGTCTACAGCATAATACTCA~ CLQHN~ IGKV~ .     IGKJ~ IGKC  asse~
+#>  2      297    0.0889 TGCATGCAACGTATAGAGTT~ CMQRI~ IGKV~ .     .     .     asse~
+#>  3      277    0.0829 TGCATGCAAGCTCTACAAAC~ CMQAL~ IGKV~ .     IGKJ~ IGKC  asse~
+#>  4      230    0.0688 TGTCAACAGCTTAATAGTTA~ CQQLN~ IGKV~ .     IGKJ~ IGKC  asse~
+#>  5      209    0.0625 TGTCAACAGCTTAATAGTTA~ CQQLN~ IGKV~ .     IGKJ~ IGKC  asse~
+#>  6      108    0.0323 TGCCAACAGTATAATAGTTA~ out_o~ IGKV~ .     IGKJ~ IGKC  asse~
+#>  7      107    0.0320 TGCTGCTCATATGCAGGCAG~ CCSYA~ IGLV~ .     IGLJ~ IGLC  asse~
+#>  8       86    0.0257 TGTCAGGCGTGGGACAGCAG~ CQAWD~ IGLV~ .     IGLJ~ IGLC  asse~
+#>  9       83    0.0911 TGTGGGAATAACAATGCCAG~ CGNNN~ TRAV~ .     TRAJ~ .     asse~
+#> 10       68    0.0738 TGTTGAGCAAATCATAGTGT~ C_ANH~ TRAV~ .     TRAJ~ .     asse~
 #> # ... with 612 more rows
 #> 
 #> $sample_02
 #> # A tibble: 860 x 9
-#>    `#count` frequency CDR3nt           CDR3aa     V      D     J     C     cid  
-#>       <dbl>     <dbl> <chr>            <chr>      <chr>  <chr> <chr> <chr> <chr>
-#>  1      346    0.0869 TGCATGCAACGTATA~ CMQRIEFPS~ IGKV2~ .     .     .     asse~
-#>  2      279    0.0700 TGTCTACAGCATAAT~ CLQHNSYPW~ IGKV1~ .     IGKJ~ IGKC  asse~
-#>  3      181    0.0455 TGTCAACAGGCTAAC~ CQQANSFPI~ IGKV1~ .     IGKJ~ IGKC  asse~
-#>  4      112    0.0282 TGCATGCAAGCTCTA~ CMQALQTPW~ IGKV2~ .     IGKJ~ IGKC  asse~
-#>  5       79    0.711  TGTGCCACCTGGGAC~ out_of_fr~ TRGV3~ .     TRGJ~ TRGC  asse~
-#>  6       76    0.150  TGTTGAGCAAATCAT~ C_ANHSVSS~ TRAV2~ .     TRAJ~ .     asse~
-#>  7       67    0.0169 TGTCAGCAGTATGGT~ CQQYGNSLL~ IGKV3~ .     IGKJ~ IGKC  asse~
-#>  8       63    0.124  TGTGACAATAACAAT~ CDNNNDMRF  TRAV1~ .     TRAJ~ .     asse~
-#>  9       61    0.0153 TGCCAACAGTATAAT~ CQQYNSYSP~ IGKV1~ .     IGKJ~ IGKC  asse~
-#> 10       58    0.0146 TGCATGCAAGGTACA~ CMQGTHVWTF IGKV2~ .     IGKJ~ IGKC  asse~
+#>    `#count` frequency CDR3nt                CDR3aa V     D     J     C     cid  
+#>       <dbl>     <dbl> <chr>                 <chr>  <chr> <chr> <chr> <chr> <chr>
+#>  1      346    0.0869 TGCATGCAACGTATAGAGTT~ CMQRI~ IGKV~ .     .     .     asse~
+#>  2      279    0.0700 TGTCTACAGCATAATAGTTA~ CLQHN~ IGKV~ .     IGKJ~ IGKC  asse~
+#>  3      181    0.0455 TGTCAACAGGCTAACAGTTT~ CQQAN~ IGKV~ .     IGKJ~ IGKC  asse~
+#>  4      112    0.0282 TGCATGCAAGCTCTACAAAC~ CMQAL~ IGKV~ .     IGKJ~ IGKC  asse~
+#>  5       79    0.711  TGTGCCACCTGGGACAGGCC~ out_o~ TRGV~ .     TRGJ~ TRGC  asse~
+#>  6       76    0.150  TGTTGAGCAAATCATAGTGT~ C_ANH~ TRAV~ .     TRAJ~ .     asse~
+#>  7       67    0.0169 TGTCAGCAGTATGGTAACTC~ CQQYG~ IGKV~ .     IGKJ~ IGKC  asse~
+#>  8       63    0.124  TGTGACAATAACAATGACAT~ CDNNN~ TRAV~ .     TRAJ~ .     asse~
+#>  9       61    0.0153 TGCCAACAGTATAATAGTTA~ CQQYN~ IGKV~ .     IGKJ~ IGKC  asse~
+#> 10       58    0.0146 TGCATGCAAGGTACACACGT~ CMQGT~ IGKV~ .     IGKJ~ IGKC  asse~
 #> # ... with 850 more rows
 #> 
 #> $sample_03
 #> # A tibble: 975 x 9
-#>    `#count` frequency CDR3nt          CDR3aa     V      D      J     C     cid  
-#>       <dbl>     <dbl> <chr>           <chr>      <chr>  <chr>  <chr> <chr> <chr>
-#>  1      300    0.454  TGCAGTGCTAGAGG~ CSARGAGEI~ TRBV2~ TRBD2~ TRBJ~ TRBC  asse~
-#>  2       87    0.0207 TGCATGCAACGTAT~ CMQRIEFPS~ IGKV2~ .      .     IGKC  asse~
-#>  3       81    0.0192 TGTCAGGCTTGGGA~ CQAWDNNAV~ IGLV3~ .      IGLJ~ IGLC  asse~
-#>  4       78    0.0185 TGTGCAGCATGGGA~ out_of_fr~ IGLV1~ .      IGLJ~ IGLC  asse~
-#>  5       71    0.0169 TGCAGCTCATATAC~ CSSYTSSSI~ IGLV2~ .      IGLJ~ IGLC  asse~
-#>  6       70    0.0169 TGTCAAAAGTATAA~ CQKYNSAPF~ IGKV1~ .      IGKJ~ IGKC  asse~
-#>  7       60    0.0143 TGTCAGCAGTATAA~ CQQYNQWPL~ IGKV3~ .      IGKJ~ IGKC  asse~
-#>  8       59    0.0854 TGTTGAGCAAATCA~ C_ANHSVSS~ TRAV2~ .      TRAJ~ .     asse~
-#>  9       57    0.0138 TGTCAGCAGTATGG~ CQQYGSSPP~ IGKV3~ .      IGKJ~ IGKC  asse~
-#> 10       54    0.0128 TGTCAACAGTATTA~ CQQYYSYPP~ IGKV1~ .      IGKJ~ IGKC  asse~
+#>    `#count` frequency CDR3nt                CDR3aa V     D     J     C     cid  
+#>       <dbl>     <dbl> <chr>                 <chr>  <chr> <chr> <chr> <chr> <chr>
+#>  1      300    0.454  TGCAGTGCTAGAGGAGCGGG~ CSARG~ TRBV~ TRBD~ TRBJ~ TRBC  asse~
+#>  2       87    0.0207 TGCATGCAACGTATAGAGTT~ CMQRI~ IGKV~ .     .     IGKC  asse~
+#>  3       81    0.0192 TGTCAGGCTTGGGATAACAA~ CQAWD~ IGLV~ .     IGLJ~ IGLC  asse~
+#>  4       78    0.0185 TGTGCAGCATGGGATGACAG~ out_o~ IGLV~ .     IGLJ~ IGLC  asse~
+#>  5       71    0.0169 TGCAGCTCATATACAAGCAG~ CSSYT~ IGLV~ .     IGLJ~ IGLC  asse~
+#>  6       70    0.0169 TGTCAAAAGTATAACAGTGC~ CQKYN~ IGKV~ .     IGKJ~ IGKC  asse~
+#>  7       60    0.0143 TGTCAGCAGTATAATCAGTG~ CQQYN~ IGKV~ .     IGKJ~ IGKC  asse~
+#>  8       59    0.0854 TGTTGAGCAAATCATAGTGT~ C_ANH~ TRAV~ .     TRAJ~ .     asse~
+#>  9       57    0.0138 TGTCAGCAGTATGGTAGCTC~ CQQYG~ IGKV~ .     IGKJ~ IGKC  asse~
+#> 10       54    0.0128 TGTCAACAGTATTATAGTTA~ CQQYY~ IGKV~ .     IGKJ~ IGKC  asse~
 #> # ... with 965 more rows
 ```
 
@@ -106,7 +108,7 @@ The tidy-up consists of four steps, namely four functions:
 
 1.  format_clonotype_to_immunarch_style
 2.  remove_nonproductive_CDR3aa
-3.  annotate_chain_name_and_cell_type
+3.  annotate_chain_name_and_isotype_name
 4.  merge_convergent_clonotype
 
 ``` r
@@ -114,7 +116,7 @@ The tidy-up consists of four steps, namely four functions:
 the_divergent_clonotype_dataframe <- raw_clonotype_dataframe_list[["sample_01"]] %>%
     format_clonotype_to_immunarch_style(., clonotyping_tool = "trust") %>%
     remove_nonproductive_CDR3aa %>%
-    annotate_chain_name_and_cell_type %>%
+    annotate_chain_name_and_isotype_name %>%
     merge_convergent_clonotype
 
 # Then the only one sample should be put into a list, element of which uses the sample name,
@@ -126,7 +128,7 @@ divergent_clonotype_dataframe_list <- list(sample_01 = the_divergent_clonotype_d
 divergent_clonotype_dataframe_list <- raw_clonotype_dataframe_list %>%
     lapply(., format_clonotype_to_immunarch_style, clonotyping_tool = "trust") %>%
     lapply(., remove_nonproductive_CDR3aa) %>%
-    lapply(., annotate_chain_name_and_cell_type) %>%
+    lapply(., annotate_chain_name_and_isotype_name) %>%
     lapply(., merge_convergent_clonotype)
 ```
 
@@ -218,35 +220,37 @@ individual_metrics_dataframe_list
 
 The repertoire metrics formula including richness, diversity (Shannon
 entropy), evenness (Pielou’s eveness), and clonality were defined as
-follows, where ![p_i](https://latex.codecogs.com/png.latex?p_i "p_i") is
-the frequency of
-![{\\rm clonotype}\_i](https://latex.codecogs.com/png.latex?%7B%5Crm%20clonotype%7D_i "{\rm clonotype}_i")
-in a sample with ![N](https://latex.codecogs.com/png.latex?N "N") unique
-clonotypes ([Khunger, Rytlewski et
+follows, where
+![p_i](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;p_i "p_i")
+is the frequency of
+![{\\rm clonotype}\_i](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%7B%5Crm%20clonotype%7D_i "{\rm clonotype}_i")
+in a sample with
+![N](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;N "N")
+unique clonotypes ([Khunger, Rytlewski et
 al. 2019](https://doi.org/10.1080/2162402X.2019.1652538), [Looney,
 Topacio-Hall et al. 2020](https://doi.org/10.3389/fimmu.2019.02985)).
 
 ![
 richness\\ =\\ N
-](https://latex.codecogs.com/png.latex?%0Arichness%5C%20%3D%5C%20N%0A "
+](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%0Arichness%5C%20%3D%5C%20N%0A "
 richness\ =\ N
 ")
 
 ![
 Shannon\\ entropy=-\\sum\_{i=1}^{N}{p_i\\log_2{\\left(p_i\\right)}}
-](https://latex.codecogs.com/png.latex?%0AShannon%5C%20entropy%3D-%5Csum_%7Bi%3D1%7D%5E%7BN%7D%7Bp_i%5Clog_2%7B%5Cleft%28p_i%5Cright%29%7D%7D%0A "
+](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%0AShannon%5C%20entropy%3D-%5Csum_%7Bi%3D1%7D%5E%7BN%7D%7Bp_i%5Clog_2%7B%5Cleft%28p_i%5Cright%29%7D%7D%0A "
 Shannon\ entropy=-\sum_{i=1}^{N}{p_i\log_2{\left(p_i\right)}}
 ")
 
 ![
 Pielou\\prime s\\ eveness\\ =\\ \\frac{Shannon\\ entropy}{\\log_2{N}}
-](https://latex.codecogs.com/png.latex?%0APielou%5Cprime%20s%5C%20eveness%5C%20%3D%5C%20%5Cfrac%7BShannon%5C%20entropy%7D%7B%5Clog_2%7BN%7D%7D%0A "
+](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%0APielou%5Cprime%20s%5C%20eveness%5C%20%3D%5C%20%5Cfrac%7BShannon%5C%20entropy%7D%7B%5Clog_2%7BN%7D%7D%0A "
 Pielou\prime s\ eveness\ =\ \frac{Shannon\ entropy}{\log_2{N}}
 ")
 
 ![
 clonality\\ =\\ 1\\ -\\ Pielou\\prime s\\ evenness
-](https://latex.codecogs.com/png.latex?%0Aclonality%5C%20%3D%5C%201%5C%20-%5C%20Pielou%5Cprime%20s%5C%20evenness%0A "
+](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%0Aclonality%5C%20%3D%5C%201%5C%20-%5C%20Pielou%5Cprime%20s%5C%20evenness%0A "
 clonality\ =\ 1\ -\ Pielou\prime s\ evenness
 ")
 
@@ -271,7 +275,7 @@ calculate_repertoire_metrics
 #>         "evenness")
 #>     output_vector
 #> }
-#> <bytecode: 0x00000000209ba898>
+#> <bytecode: 0x000000002808bbd0>
 #> <environment: namespace:rTCRBCRr>
 ```
 
