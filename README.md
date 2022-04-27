@@ -54,52 +54,52 @@ raw_clonotype_dataframe_list <- lapply(input_paths, readr::read_tsv) %>%
     magrittr::set_names(., value = sample_names)
 raw_clonotype_dataframe_list
 #> $sample_01
-#> # A tibble: 622 x 9
+#> # A tibble: 5,051 x 10
 #>    `#count` frequency CDR3nt                CDR3aa V     D     J     C     cid  
 #>       <dbl>     <dbl> <chr>                 <chr>  <chr> <chr> <chr> <chr> <chr>
-#>  1      377    0.113  TGTCTACAGCATAATACTCA~ CLQHN~ IGKV~ .     IGKJ~ IGKC  asse~
-#>  2      297    0.0889 TGCATGCAACGTATAGAGTT~ CMQRI~ IGKV~ .     .     .     asse~
-#>  3      277    0.0829 TGCATGCAAGCTCTACAAAC~ CMQAL~ IGKV~ .     IGKJ~ IGKC  asse~
-#>  4      230    0.0688 TGTCAACAGCTTAATAGTTA~ CQQLN~ IGKV~ .     IGKJ~ IGKC  asse~
-#>  5      209    0.0625 TGTCAACAGCTTAATAGTTA~ CQQLN~ IGKV~ .     IGKJ~ IGKC  asse~
-#>  6      108    0.0323 TGCCAACAGTATAATAGTTA~ out_o~ IGKV~ .     IGKJ~ IGKC  asse~
-#>  7      107    0.0320 TGCTGCTCATATGCAGGCAG~ CCSYA~ IGLV~ .     IGLJ~ IGLC  asse~
-#>  8       86    0.0257 TGTCAGGCGTGGGACAGCAG~ CQAWD~ IGLV~ .     IGLJ~ IGLC  asse~
-#>  9       83    0.0911 TGTGGGAATAACAATGCCAG~ CGNNN~ TRAV~ .     TRAJ~ .     asse~
-#> 10       68    0.0738 TGTTGAGCAAATCATAGTGT~ C_ANH~ TRAV~ .     TRAJ~ .     asse~
-#> # ... with 612 more rows
+#>  1     1813    0.0664 TGTCAGAAGTATGGTGGCTC~ CQKYG~ IGKV~ .     IGKJ~ IGKC  asse~
+#>  2     1684    0.0833 TGCGCGAGAGATGCGGGGGG~ CARDA~ IGHV~ IGHD~ IGHJ~ IGHG1 asse~
+#>  3     1648    0.0815 TGTGCGAGAGGGGGAGTGGA~ CARGG~ IGHV~ IGHD~ IGHJ~ IGHG1 asse~
+#>  4     1505    0.0551 TGTCAACAGCTTAGTTATTA~ CQQLS~ IGKV~ .     IGKJ~ IGKC  asse~
+#>  5     1081    0.0396 TGCATGCAAGGTCTACAAAC~ CMQGL~ IGKV~ .     IGKJ~ IGKC  asse~
+#>  6      895    0.0328 TGTCAACAGAGTTACGGTAC~ CQQSY~ IGKV~ .     IGKJ~ IGKC  asse~
+#>  7      866    0.0429 TGTGCGAGAGCCTCTTATTA~ CARAS~ IGHV~ IGHD~ IGHJ~ IGHG1 asse~
+#>  8      811    0.0297 TGCATGCAAGCTCTACAAAC~ CMQAL~ IGKV~ .     IGKJ~ IGKC  asse~
+#>  9      767    0.0281 TGCTGCTCATATACAGGCAG~ CCSYT~ IGLV~ .     IGLJ~ IGLC  asse~
+#> 10      761    0.0377 TGTGCTAGGGCGGCCAGTGG~ CARAA~ IGHV~ IGHD~ IGHJ~ IGHG1 asse~
+#> # ... with 5,041 more rows, and 1 more variable: cid_full_length <dbl>
 #> 
 #> $sample_02
-#> # A tibble: 860 x 9
+#> # A tibble: 5,915 x 10
 #>    `#count` frequency CDR3nt                CDR3aa V     D     J     C     cid  
 #>       <dbl>     <dbl> <chr>                 <chr>  <chr> <chr> <chr> <chr> <chr>
-#>  1      346    0.0869 TGCATGCAACGTATAGAGTT~ CMQRI~ IGKV~ .     .     .     asse~
-#>  2      279    0.0700 TGTCTACAGCATAATAGTTA~ CLQHN~ IGKV~ .     IGKJ~ IGKC  asse~
-#>  3      181    0.0455 TGTCAACAGGCTAACAGTTT~ CQQAN~ IGKV~ .     IGKJ~ IGKC  asse~
-#>  4      112    0.0282 TGCATGCAAGCTCTACAAAC~ CMQAL~ IGKV~ .     IGKJ~ IGKC  asse~
-#>  5       79    0.711  TGTGCCACCTGGGACAGGCC~ out_o~ TRGV~ .     TRGJ~ TRGC  asse~
-#>  6       76    0.150  TGTTGAGCAAATCATAGTGT~ C_ANH~ TRAV~ .     TRAJ~ .     asse~
-#>  7       67    0.0169 TGTCAGCAGTATGGTAACTC~ CQQYG~ IGKV~ .     IGKJ~ IGKC  asse~
-#>  8       63    0.124  TGTGACAATAACAATGACAT~ CDNNN~ TRAV~ .     TRAJ~ .     asse~
-#>  9       61    0.0153 TGCCAACAGTATAATAGTTA~ CQQYN~ IGKV~ .     IGKJ~ IGKC  asse~
-#> 10       58    0.0146 TGCATGCAAGGTACACACGT~ CMQGT~ IGKV~ .     IGKJ~ IGKC  asse~
-#> # ... with 850 more rows
+#>  1     5392    0.0875 TGCATGCAAGCTCTACAAAC~ CMQAL~ IGKV~ .     IGKJ~ IGKC  asse~
+#>  2     4470    0.0725 TGCATGCAATCTCTACAAGC~ CMQSL~ IGKV~ .     IGKJ~ IGKC  asse~
+#>  3     3852    0.0625 TGTCAGCAGTATAATAACTG~ CQQYN~ IGKV~ .     IGKJ~ IGKC  asse~
+#>  4     2893    0.0470 TGCCAACGATATGATACTTA~ CQRYD~ IGKV~ .     IGKJ~ IGKC  asse~
+#>  5     2698    0.0438 TGTCAGCAGTATAATAACTG~ CQQYN~ IGKV~ .     IGKJ~ IGKC  asse~
+#>  6     1691    0.0509 TGTGCGAGACAAGTTCGTCC~ CARQV~ IGHV~ IGHD~ IGHJ~ IGHG1 asse~
+#>  7     1589    0.0478 TGTGCGAGACACGCGGATAC~ CARHA~ IGHV~ IGHD~ IGHJ~ IGHG1 asse~
+#>  8     1373    0.0414 TGTGCGAGACAGTTTTACTA~ CARQF~ IGHV~ IGHD~ IGHJ~ IGHG1 asse~
+#>  9     1319    0.0397 TGTGCGGCAGAGTGGGCTAG~ CAAEW~ IGHV~ IGHD~ IGHJ~ IGHG1 asse~
+#> 10     1172    0.0353 TGTGCGAGGGGGGTCAATTA~ CARGV~ IGHV~ IGHD~ IGHJ~ IGHG1 asse~
+#> # ... with 5,905 more rows, and 1 more variable: cid_full_length <dbl>
 #> 
 #> $sample_03
-#> # A tibble: 975 x 9
+#> # A tibble: 6,027 x 10
 #>    `#count` frequency CDR3nt                CDR3aa V     D     J     C     cid  
 #>       <dbl>     <dbl> <chr>                 <chr>  <chr> <chr> <chr> <chr> <chr>
-#>  1      300    0.454  TGCAGTGCTAGAGGAGCGGG~ CSARG~ TRBV~ TRBD~ TRBJ~ TRBC  asse~
-#>  2       87    0.0207 TGCATGCAACGTATAGAGTT~ CMQRI~ IGKV~ .     .     IGKC  asse~
-#>  3       81    0.0192 TGTCAGGCTTGGGATAACAA~ CQAWD~ IGLV~ .     IGLJ~ IGLC  asse~
-#>  4       78    0.0185 TGTGCAGCATGGGATGACAG~ out_o~ IGLV~ .     IGLJ~ IGLC  asse~
-#>  5       71    0.0169 TGCAGCTCATATACAAGCAG~ CSSYT~ IGLV~ .     IGLJ~ IGLC  asse~
-#>  6       70    0.0169 TGTCAAAAGTATAACAGTGC~ CQKYN~ IGKV~ .     IGKJ~ IGKC  asse~
-#>  7       60    0.0143 TGTCAGCAGTATAATCAGTG~ CQQYN~ IGKV~ .     IGKJ~ IGKC  asse~
-#>  8       59    0.0854 TGTTGAGCAAATCATAGTGT~ C_ANH~ TRAV~ .     TRAJ~ .     asse~
-#>  9       57    0.0138 TGTCAGCAGTATGGTAGCTC~ CQQYG~ IGKV~ .     IGKJ~ IGKC  asse~
-#> 10       54    0.0128 TGTCAACAGTATTATAGTTA~ CQQYY~ IGKV~ .     IGKJ~ IGKC  asse~
-#> # ... with 965 more rows
+#>  1    14711    0.335  TGTACACTCCTGGTGACCAC~ CTLLV~ IGHV~ IGHD~ IGHJ~ IGHG1 asse~
+#>  2    13909    0.341  TGCCAGTCCTATGACAGCAG~ CQSYD~ IGLV~ .     IGLJ~ IGLC  asse~
+#>  3     6790    0.166  TGCAGCTCACACACAAGCAG~ CSSHT~ IGLV~ .     IGLJ~ IGLC  asse~
+#>  4     4209    0.0959 TGTGCGAGAGCCCTCCCCTA~ CARAL~ IGHV~ IGHD~ IGHJ~ IGHG1 asse~
+#>  5     3727    0.0850 TGTGCGAGAGCCCTCCCCTA~ CARAL~ IGHV~ IGHD~ IGHJ~ IGHA1 asse~
+#>  6      910    0.0223 TGCAGCTCATATGCAGGCGG~ CSSYA~ IGLV~ .     IGLJ~ IGLC  asse~
+#>  7      771    0.0189 TGTGCAGCATGGGAAGACAG~ CAAWE~ IGLV~ .     IGLJ~ IGLC  asse~
+#>  8      768    0.0175 TGTGCGAGATTTTTCCATGA~ CARFF~ IGHV~ IGHD~ IGHJ~ IGHG3 asse~
+#>  9      701    0.0172 TGCCAGTCCTATGACAGCAG~ CQSYD~ IGLV~ .     IGLJ~ IGLC  asse~
+#> 10      628    0.0143 TGTGCGAGAGATGTACTATT~ CARDV~ IGHV~ IGHD~ IGHJ~ IGHG1 asse~
+#> # ... with 6,017 more rows, and 1 more variable: cid_full_length <dbl>
 ```
 
 ### Tidy up the clonotype dataframes
@@ -146,26 +146,27 @@ all_sample_all_chain_all_metrics_wide_dataframe <- divergent_clonotype_dataframe
 
 all_sample_all_chain_all_metrics_wide_dataframe
 #>    sample_name chain_name diversity  clonality richness  evenness
-#> 1    sample_01        IGH 3.8128541 0.15879308       93 0.8412069
-#> 2    sample_01        IGK 3.5326955 0.27307986      129 0.7269201
-#> 3    sample_01        IGL 3.2411554 0.19481434       56 0.8051857
-#> 4    sample_01        TRA 4.5561670 0.09190495      151 0.9080950
-#> 5    sample_01        TRB 4.1703127 0.10574307      106 0.8942569
-#> 6    sample_01        TRG 0.6365142 0.08170417        2 0.9182958
-#> 7    sample_02        IGH 4.6276182 0.08126629      154 0.9187337
-#> 8    sample_02        IGK 4.6461374 0.17854595      286 0.8214540
-#> 9    sample_02        IGL 4.2727276 0.11939386      128 0.8806061
-#> 10   sample_02        TRA 3.9140472 0.15371455      102 0.8462854
-#> 11   sample_02        TRB 3.6792926 0.07329419       53 0.9267058
-#> 12   sample_02        TRD 0.6365142 0.08170417        2 0.9182958
-#> 13   sample_02        TRG 1.3579779 0.15624092        5 0.8437591
-#> 14   sample_03        IGH 4.5699705 0.06694162      134 0.9330584
-#> 15   sample_03        IGK 4.9256343 0.10661142      248 0.8933886
-#> 16   sample_03        IGL 4.7837763 0.10293857      207 0.8970614
-#> 17   sample_03        TRA 4.2283160 0.10887746      115 0.8911225
-#> 18   sample_03        TRB 2.8253024 0.40008828      111 0.5999117
-#> 19   sample_03        TRD 1.3138644 0.05224719        4 0.9477528
-#> 20   sample_03        TRG 2.0972999 0.18232308       13 0.8176769
+#> 1    sample_01        IGH 5.4161872 0.26283295     1552 0.7371670
+#> 2    sample_01        IGK 5.2677388 0.28931127     1656 0.7106887
+#> 3    sample_01        IGL 4.8949171 0.25490053      713 0.7450995
+#> 4    sample_01        TRA 4.3018929 0.06585582      100 0.9341442
+#> 5    sample_01        TRB 4.8358496 0.08467479      197 0.9153252
+#> 6    sample_01        TRD 0.6730117 0.02904941        2 0.9709506
+#> 7    sample_01        TRG 0.6931472 0.00000000        2 1.0000000
+#> 8    sample_02        IGH 5.3401961 0.28075859     1677 0.7192414
+#> 9    sample_02        IGK 4.5087736 0.40269721     1898 0.5973028
+#> 10   sample_02        IGL 4.7761543 0.28333416      784 0.7166658
+#> 11   sample_02        TRA 3.7682140 0.07196974       58 0.9280303
+#> 12   sample_02        TRB 3.8933793 0.11402336       81 0.8859766
+#> 13   sample_02        TRD 0.5004024 0.27807191        2 0.7219281
+#> 14   sample_02        TRG        NA         NA       NA        NA
+#> 15   sample_03        IGH 3.3401373 0.54000361     1424 0.4599964
+#> 16   sample_03        IGK 5.4716100 0.17675466      770 0.8232453
+#> 17   sample_03        IGL 2.5747289 0.62180471      905 0.3781953
+#> 18   sample_03        TRA 4.0981274 0.11943225      105 0.8805677
+#> 19   sample_03        TRB 3.9120015 0.22823526      159 0.7717647
+#> 20   sample_03        TRD        NA         NA       NA        NA
+#> 21   sample_03        TRG 0.5982696 0.13687943        2 0.8631206
 ```
 
 ### Separate the all_sample_all_chain_all_metrics_wide_dataframe by individual metrics.
@@ -177,43 +178,43 @@ individual_metrics_dataframe_list <- all_sample_all_chain_all_metrics_wide_dataf
 individual_metrics_dataframe_list
 #> $diversity
 #>     sample_01 sample_02 sample_03
-#> IGH 3.8128541 4.6276182  4.569970
-#> IGK 3.5326955 4.6461374  4.925634
-#> IGL 3.2411554 4.2727276  4.783776
-#> TRA 4.5561670 3.9140472  4.228316
-#> TRB 4.1703127 3.6792926  2.825302
-#> TRG 0.6365142 1.3579779  2.097300
-#> TRD        NA 0.6365142  1.313864
+#> IGH 5.4161872 5.3401961 3.3401373
+#> IGK 5.2677388 4.5087736 5.4716100
+#> IGL 4.8949171 4.7761543 2.5747289
+#> TRA 4.3018929 3.7682140 4.0981274
+#> TRB 4.8358496 3.8933793 3.9120015
+#> TRD 0.6730117 0.5004024        NA
+#> TRG 0.6931472        NA 0.5982696
 #> 
 #> $clonality
-#>      sample_01  sample_02  sample_03
-#> IGH 0.15879308 0.08126629 0.06694162
-#> IGK 0.27307986 0.17854595 0.10661142
-#> IGL 0.19481434 0.11939386 0.10293857
-#> TRA 0.09190495 0.15371455 0.10887746
-#> TRB 0.10574307 0.07329419 0.40008828
-#> TRG 0.08170417 0.15624092 0.18232308
-#> TRD         NA 0.08170417 0.05224719
+#>      sample_01  sample_02 sample_03
+#> IGH 0.26283295 0.28075859 0.5400036
+#> IGK 0.28931127 0.40269721 0.1767547
+#> IGL 0.25490053 0.28333416 0.6218047
+#> TRA 0.06585582 0.07196974 0.1194323
+#> TRB 0.08467479 0.11402336 0.2282353
+#> TRD 0.02904941 0.27807191        NA
+#> TRG 0.00000000         NA 0.1368794
 #> 
 #> $richness
 #>     sample_01 sample_02 sample_03
-#> IGH        93       154       134
-#> IGK       129       286       248
-#> IGL        56       128       207
-#> TRA       151       102       115
-#> TRB       106        53       111
-#> TRG         2         5        13
-#> TRD        NA         2         4
+#> IGH      1552      1677      1424
+#> IGK      1656      1898       770
+#> IGL       713       784       905
+#> TRA       100        58       105
+#> TRB       197        81       159
+#> TRD         2         2        NA
+#> TRG         2        NA         2
 #> 
 #> $evenness
 #>     sample_01 sample_02 sample_03
-#> IGH 0.8412069 0.9187337 0.9330584
-#> IGK 0.7269201 0.8214540 0.8933886
-#> IGL 0.8051857 0.8806061 0.8970614
-#> TRA 0.9080950 0.8462854 0.8911225
-#> TRB 0.8942569 0.9267058 0.5999117
-#> TRG 0.9182958 0.8437591 0.8176769
-#> TRD        NA 0.9182958 0.9477528
+#> IGH 0.7371670 0.7192414 0.4599964
+#> IGK 0.7106887 0.5973028 0.8232453
+#> IGL 0.7450995 0.7166658 0.3781953
+#> TRA 0.9341442 0.9280303 0.8805677
+#> TRB 0.9153252 0.8859766 0.7717647
+#> TRD 0.9709506 0.7219281        NA
+#> TRG 1.0000000        NA 0.8631206
 ```
 
 ## Clonotype repertoire metrics formulas
@@ -275,7 +276,7 @@ calculate_repertoire_metrics
 #>         "evenness")
 #>     output_vector
 #> }
-#> <bytecode: 0x000000002808bbd0>
+#> <bytecode: 0x00000000275907c8>
 #> <environment: namespace:rTCRBCRr>
 ```
 

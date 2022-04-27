@@ -114,7 +114,8 @@ parse_trust4 <- function(input_clone_dataframe) {
 
     # Ensure the column names are not changed in the future trust4 version.
     stopifnot(
-        colnames(input_clone_dataframe) == c("#count", "frequency", "CDR3nt", "CDR3aa", "V", "D", "J", "C", "cid")
+        colnames(input_clone_dataframe) == c("#count", "frequency", "CDR3nt", "CDR3aa", "V", "D", "J", "C",
+                                             "cid", "cid_full_length")
     )
 
     raw_format_dataframe <- input_clone_dataframe %>%
