@@ -143,10 +143,6 @@ This step consists of two functions.
 all_sample_all_chain_all_metrics_wide_dataframe <- divergent_clonotype_dataframe_list %>%
     lapply(., compute_repertoire_metrics_by_chain_name) %>%
     combine_all_sample_repertoire_metrics
-#> Warning in (function (..., deparse.level = 1) : number of columns of result is
-#> not a multiple of vector length (arg 7)
-#> Warning in (function (..., deparse.level = 1) : number of columns of result is
-#> not a multiple of vector length (arg 6)
 
 all_sample_all_chain_all_metrics_wide_dataframe
 #>    sample_name chain_name diversity  clonality richness  evenness       median
@@ -299,7 +295,7 @@ calculate_repertoire_metrics
 #>         "evenness", "median")
 #>     output_vector
 #> }
-#> <bytecode: 0x000000002883a090>
+#> <bytecode: 0x0000000025866b10>
 #> <environment: namespace:rTCRBCRr>
 ```
 

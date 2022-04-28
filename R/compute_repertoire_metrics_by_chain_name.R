@@ -46,8 +46,8 @@ summarize_repertoire_metrics <- function(one_sample_dataframe) {
     # one_sample_dataframe can be a table of immunarch clone format of one sample
 
     if (nrow(one_sample_dataframe) <= 1) {
-        metrics_vector <- rep(NA, times = 4)
-        names(metrics_vector) <- c("diversity", "clonality", "richness", "evenness")
+        metrics_vector <- rep(NA, times = 5)
+        names(metrics_vector) <- c("diversity", "clonality", "richness", "evenness", "median")
     } else {
         species_name_column <- "CDR3.aa"
         species_count_column <- "Clones"
