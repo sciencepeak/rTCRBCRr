@@ -114,19 +114,26 @@ individual_metrics_dataframe_list
 
 ## Clonotype repertoire metrics formulas
 
-The repertoire metrics formula including richness, diversity (Shannon entropy), evenness (Pielou's eveness), and clonality were defined as follows, where $p_i$ is the frequency of ${\rm clonotype}_i$ in a sample with $N$ unique clonotypes ([Khunger, Rytlewski et al. 2019](https://doi.org/10.1080/2162402X.2019.1652538), [Looney, Topacio-Hall et al. 2020](https://doi.org/10.3389/fimmu.2019.02985)).
+The repertoire metrics formula including richness, diversity (Shannon entropy), evenness (Pielou's eveness), clonality, and median (frequency median) were defined as follows, where $p_i$ is the frequency of ${\rm clonotype}_i$ in a sample with $N$ unique clonotypes ([Khunger, Rytlewski et al. 2019](https://doi.org/10.1080/2162402X.2019.1652538), [Looney, Topacio-Hall et al. 2020](https://doi.org/10.3389/fimmu.2019.02985)). $P$ is the frequency vector of unique clonotypes.
 
 $$
 richness\ =\ N
 $$
+
 $$
 Shannon\ entropy=-\sum_{i=1}^{N}{p_i\log_2{\left(p_i\right)}}
 $$
+
 $$
 Pielou\prime s\ eveness\ =\ \frac{Shannon\ entropy}{\log_2{N}}
 $$
+
 $$
 clonality\ =\ 1\ -\ Pielou\prime s\ evenness
+$$
+
+$$
+frequency\ median\ =\ median(P)
 $$
 
 The function `calculate_repertoire_metrics` is essential to implement the repertoire metrics formulas

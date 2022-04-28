@@ -63,6 +63,10 @@ merge_convergent_clonotype <- function(input_dataframe) {
         # df3 <- CDR3aa_chain_combination_list[["CARAAAYCGGDCSLSWFDPW.IGH"]]
         summarized_convergence_list <- lapply(CDR3aa_chain_combination_list, summarize_convergence_function)
 
+        # Ensure each processed vector is identical.
+        stopifnot(length(unique(lapply(summarized_convergence_list, names))) == 1)
+        stopifnot(length(unique(lapply(summarized_convergence_list, length))) == 1)
+
         summarized_convergence_dataframe <- do.call(rbind, summarized_convergence_list) %>%
             as.data.frame %>%
             inset(., "Clones", value = as.numeric(.$Clones)) %>%

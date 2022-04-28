@@ -122,7 +122,7 @@ nonproductive_CDR3aa_removed_dataframe <- immunarch_style_dataframe %>%
 
 chain_separated_dataframe <- nonproductive_CDR3aa_removed_dataframe %>%
     annotate_chain_name_and_isotype_name
-
+# input_dataframe <- chain_separated_dataframe
 convergent_clonotype_merged_dataframe <- chain_separated_dataframe %>%
     merge_convergent_clonotype
 ```

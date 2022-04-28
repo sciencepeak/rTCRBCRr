@@ -143,30 +143,34 @@ This step consists of two functions.
 all_sample_all_chain_all_metrics_wide_dataframe <- divergent_clonotype_dataframe_list %>%
     lapply(., compute_repertoire_metrics_by_chain_name) %>%
     combine_all_sample_repertoire_metrics
+#> Warning in (function (..., deparse.level = 1) : number of columns of result is
+#> not a multiple of vector length (arg 7)
+#> Warning in (function (..., deparse.level = 1) : number of columns of result is
+#> not a multiple of vector length (arg 6)
 
 all_sample_all_chain_all_metrics_wide_dataframe
-#>    sample_name chain_name diversity  clonality richness  evenness
-#> 1    sample_01        IGH 5.4161872 0.26283295     1552 0.7371670
-#> 2    sample_01        IGK 5.2677388 0.28931127     1656 0.7106887
-#> 3    sample_01        IGL 4.8949171 0.25490053      713 0.7450995
-#> 4    sample_01        TRA 4.3018929 0.06585582      100 0.9341442
-#> 5    sample_01        TRB 4.8358496 0.08467479      197 0.9153252
-#> 6    sample_01        TRD 0.6730117 0.02904941        2 0.9709506
-#> 7    sample_01        TRG 0.6931472 0.00000000        2 1.0000000
-#> 8    sample_02        IGH 5.3401961 0.28075859     1677 0.7192414
-#> 9    sample_02        IGK 4.5087736 0.40269721     1898 0.5973028
-#> 10   sample_02        IGL 4.7761543 0.28333416      784 0.7166658
-#> 11   sample_02        TRA 3.7682140 0.07196974       58 0.9280303
-#> 12   sample_02        TRB 3.8933793 0.11402336       81 0.8859766
-#> 13   sample_02        TRD 0.5004024 0.27807191        2 0.7219281
-#> 14   sample_02        TRG        NA         NA       NA        NA
-#> 15   sample_03        IGH 3.3401373 0.54000361     1424 0.4599964
-#> 16   sample_03        IGK 5.4716100 0.17675466      770 0.8232453
-#> 17   sample_03        IGL 2.5747289 0.62180471      905 0.3781953
-#> 18   sample_03        TRA 4.0981274 0.11943225      105 0.8805677
-#> 19   sample_03        TRB 3.9120015 0.22823526      159 0.7717647
-#> 20   sample_03        TRD        NA         NA       NA        NA
-#> 21   sample_03        TRG 0.5982696 0.13687943        2 0.8631206
+#>    sample_name chain_name diversity  clonality richness  evenness       median
+#> 1    sample_01        IGH 5.4161872 0.26283295     1552 0.7371670 1.509510e-04
+#> 2    sample_01        IGK 5.2677388 0.28931127     1656 0.7106887 9.082240e-05
+#> 3    sample_01        IGL 4.8949171 0.25490053      713 0.7450995 4.132231e-04
+#> 4    sample_01        TRA 4.3018929 0.06585582      100 0.9341442 6.437768e-03
+#> 5    sample_01        TRB 4.8358496 0.08467479      197 0.9153252 3.642987e-03
+#> 6    sample_01        TRD 0.6730117 0.02904941        2 0.9709506 5.000000e-01
+#> 7    sample_01        TRG 0.6931472 0.00000000        2 1.0000000 5.000000e-01
+#> 8    sample_02        IGH 5.3401961 0.28075859     1677 0.7192414 9.231905e-05
+#> 9    sample_02        IGK 4.5087736 0.40269721     1898 0.5973028 4.043917e-05
+#> 10   sample_02        IGL 4.7761543 0.28333416      784 0.7166658 1.851338e-04
+#> 11   sample_02        TRA 3.7682140 0.07196974       58 0.9280303 1.398601e-02
+#> 12   sample_02        TRB 3.8933793 0.11402336       81 0.8859766 9.174312e-03
+#> 13   sample_02        TRD 0.5004024 0.27807191        2 0.7219281 5.000000e-01
+#> 14   sample_02        TRG        NA         NA       NA        NA           NA
+#> 15   sample_03        IGH 3.3401373 0.54000361     1424 0.4599964 1.032684e-04
+#> 16   sample_03        IGK 5.4716100 0.17675466      770 0.8232453 4.581552e-04
+#> 17   sample_03        IGL 2.5747289 0.62180471      905 0.3781953 6.578731e-05
+#> 18   sample_03        TRA 4.0981274 0.11943225      105 0.8805677 5.917160e-03
+#> 19   sample_03        TRB 3.9120015 0.22823526      159 0.7717647 2.816901e-03
+#> 20   sample_03        TRD        NA         NA       NA        NA           NA
+#> 21   sample_03        TRG 0.5982696 0.13687943        2 0.8631206 5.000000e-01
 ```
 
 ### Separate the all_sample_all_chain_all_metrics_wide_dataframe by individual metrics.
@@ -215,13 +219,23 @@ individual_metrics_dataframe_list
 #> TRB 0.9153252 0.8859766 0.7717647
 #> TRD 0.9709506 0.7219281        NA
 #> TRG 1.0000000        NA 0.8631206
+#> 
+#> $median
+#>        sample_01    sample_02    sample_03
+#> IGH 0.0001509510 9.231905e-05 1.032684e-04
+#> IGK 0.0000908224 4.043917e-05 4.581552e-04
+#> IGL 0.0004132231 1.851338e-04 6.578731e-05
+#> TRA 0.0064377682 1.398601e-02 5.917160e-03
+#> TRB 0.0036429872 9.174312e-03 2.816901e-03
+#> TRD 0.5000000000 5.000000e-01           NA
+#> TRG 0.5000000000           NA 5.000000e-01
 ```
 
 ## Clonotype repertoire metrics formulas
 
 The repertoire metrics formula including richness, diversity (Shannon
-entropy), evenness (Pielou’s eveness), and clonality were defined as
-follows, where
+entropy), evenness (Pielou’s eveness), clonality, and median (frequency
+median) were defined as follows, where
 ![p_i](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;p_i "p_i")
 is the frequency of
 ![{\\rm clonotype}\_i](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%7B%5Crm%20clonotype%7D_i "{\rm clonotype}_i")
@@ -230,6 +244,8 @@ in a sample with
 unique clonotypes ([Khunger, Rytlewski et
 al. 2019](https://doi.org/10.1080/2162402X.2019.1652538), [Looney,
 Topacio-Hall et al. 2020](https://doi.org/10.3389/fimmu.2019.02985)).
+![P](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;P "P")
+is the frequency vector of unique clonotypes.
 
 ![
 richness\\ =\\ N
@@ -255,6 +271,12 @@ clonality\\ =\\ 1\\ -\\ Pielou\\prime s\\ evenness
 clonality\ =\ 1\ -\ Pielou\prime s\ evenness
 ")
 
+![
+frequency\\ median\\ =\\ median(P)
+](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%0Afrequency%5C%20median%5C%20%3D%5C%20median%28P%29%0A "
+frequency\ median\ =\ median(P)
+")
+
 The function `calculate_repertoire_metrics` is essential to implement
 the repertoire metrics formulas
 
@@ -270,13 +292,14 @@ calculate_repertoire_metrics
 #>     richness_count <- length(species_vector)
 #>     pielou_evenness <- shannon_entropy/log(richness_count)
 #>     clonality_score <- 1 - pielou_evenness
+#>     frequency_median <- median(frequency_vector)
 #>     output_vector <- c(shannon_entropy, clonality_score, richness_count, 
-#>         pielou_evenness)
+#>         pielou_evenness, frequency_median)
 #>     names(output_vector) <- c("diversity", "clonality", "richness", 
-#>         "evenness")
+#>         "evenness", "median")
 #>     output_vector
 #> }
-#> <bytecode: 0x00000000275907c8>
+#> <bytecode: 0x000000002883a090>
 #> <environment: namespace:rTCRBCRr>
 ```
 

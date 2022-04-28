@@ -2,6 +2,7 @@
 #'
 #' @param named_species_vector a named vector
 #' @return a named vector
+#' @importFrom stats median
 #' @export
 #' @examples
 #' a_named_vector <- c("apple" = 1, "banana" = 3, "cranberry" = 7, "date" = 10)
@@ -24,11 +25,12 @@ calculate_repertoire_metrics <- function(named_species_vector) {
     richness_count <- length(species_vector)
     pielou_evenness <- shannon_entropy/log(richness_count)
     clonality_score <- 1 - pielou_evenness
+    frequency_median <- median(frequency_vector)
 
     # The variable name in the output_vector is more scientific to reveal the underlying formula
 
-    output_vector <- c(shannon_entropy, clonality_score, richness_count, pielou_evenness)
-    names(output_vector) <- c("diversity", "clonality", "richness", "evenness")
+    output_vector <- c(shannon_entropy, clonality_score, richness_count, pielou_evenness, frequency_median)
+    names(output_vector) <- c("diversity", "clonality", "richness", "evenness", "median")
 
     output_vector
 }
