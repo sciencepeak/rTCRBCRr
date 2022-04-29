@@ -336,7 +336,7 @@ unique clonotypes ([Khunger, Rytlewski et
 al. 2019](https://doi.org/10.1080/2162402X.2019.1652538), [Looney,
 Topacio-Hall et al. 2020](https://doi.org/10.3389/fimmu.2019.02985)).
 ![P](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;P "P")
-is the frequency vector of unique clonotypes.
+is the frequency vector of unique clonotypes in a sample.
 
 ![
 richness\\ =\\ N
@@ -390,7 +390,7 @@ calculate_repertoire_metrics
 #>         "evenness", "median")
 #>     output_vector
 #> }
-#> <bytecode: 0x0000000028604218>
+#> <bytecode: 0x00000000131ba470>
 #> <environment: namespace:rTCRBCRr>
 ```
 
