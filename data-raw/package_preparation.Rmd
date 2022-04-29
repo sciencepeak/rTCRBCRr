@@ -179,6 +179,8 @@ all_sample_IGH_chain_individual_metrics_dataframe_list
 
 # Save the object for examples used in function examples.
 
+# Remember to manully add documentation in the /R/data.R file
+
 ```{r}
 usethis::use_data(raw_trust_clonotype_dataframe, overwrite = T)
 usethis::use_data(immunarch_style_dataframe, overwrite = T)

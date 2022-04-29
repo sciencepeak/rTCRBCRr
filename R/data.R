@@ -38,6 +38,14 @@
 #' @source <https://doi.org/10.3389/fimmu.2019.02985>
 "convergent_clonotype_merged_dataframe"
 
+#' @title a list of dataframe where convergent clonotypes are merged
+#'
+#' @description an list of example dataframes where convergent clonotypes are merged
+#'
+#' @format A list of data frame with m rows and n variables:
+#' @source <https://doi.org/10.3389/fimmu.2019.02985>
+"the_divergent_clonotype_dataframe_list"
+
 #' @title a dataframe list to combine rowwise.
 #'
 #' @description The element data frame must be generated from compute_repertoire_metrics_by_chain_name function
@@ -54,3 +62,38 @@
 #' @format A data frame with m rows and n variables:
 #' @source <https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/list>
 "all_sample_all_chain_all_metrics_wide_format_dataframe"
+
+#' @title a list of dataframes
+#'
+#' @description The list of data frames generated from get_item_name_x_sample_name_for_each_metric
+#'
+#' @format A list of data frame with m rows and n variables:
+#' @source <https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/list>
+"all_sample_all_chain_individual_metrics_dataframe_list"
+
+
+#' @title a dataframe list to combine rowwise.
+#'
+#' @description The element data frame must be generated from calculate_IGH_isotype_proportion function
+#'
+#' @format A list of data frames with m rows and n variables:
+#' @source <https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/list>
+"all_sample_IGH_chain_all_metrics_wide_format_dataframe_list"
+
+
+#' @title a dataframe of wide format
+#'
+#' @description The data frame must be generated from combine_all_sample_repertoire_metrics function
+#'
+#' @format A data frame with m rows and n variables:
+#' @source <https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/list>
+"all_sample_IGH_chain_all_metrics_wide_format_dataframe"
+
+#' @title a list of dataframes
+#'
+#' @description The list of data frames generated from get_item_name_x_sample_name_for_each_metric
+#'
+#' @format A list of data frame with m rows and n variables:
+#' @source <https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/list>
+"all_sample_IGH_chain_individual_metrics_dataframe_list"
+
