@@ -87,28 +87,48 @@ divergent_clonotype_dataframe_list <- raw_clonotype_dataframe_list %>%
     lapply(., merge_convergent_clonotype)
 ```
 
-#### Calculate and merge repertoire metrics for each sample in the list
+### Calculate and merge repertoire metrics by chains for each sample in the list
 
-This step consists of two functions.
-
-1. compute_repertoire_metrics_by_chain_name
-2. combine_all_sample_repertoire_metrics
+This step consists of three functions.
 
 ```{r}
-all_sample_all_chain_all_metrics_wide_dataframe <- divergent_clonotype_dataframe_list %>%
-    lapply(., compute_repertoire_metrics_by_chain_name) %>%
+# handle repertoire metrics for all the chains.
+all_sample_all_chain_all_metrics_wide_format_dataframe_list <- the_divergent_clonotype_dataframe_list %>%
+    lapply(., compute_repertoire_metrics_by_chain_name)
+
+all_sample_all_chain_all_metrics_wide_format_dataframe_list
+
+all_sample_all_chain_all_metrics_wide_format_dataframe <- all_sample_all_chain_all_metrics_wide_format_dataframe_list %>%
     combine_all_sample_repertoire_metrics
 
-all_sample_all_chain_all_metrics_wide_dataframe
+all_sample_all_chain_all_metrics_wide_format_dataframe
+
+all_sample_all_chain_individual_metrics_dataframe_list <- all_sample_all_chain_all_metrics_wide_format_dataframe %>%
+    get_item_name_x_sample_name_for_each_metric
+
+all_sample_all_chain_individual_metrics_dataframe_list
 ```
 
-### Separate the all_sample_all_chain_all_metrics_wide_dataframe by individual metrics.
+### Calculate and merge repertoire metrics by IGH isotypes for each sample in the list
+
+This step consists of three functions.
 
 ```{r}
-individual_metrics_dataframe_list <- all_sample_all_chain_all_metrics_wide_dataframe %>%
-    get_chain_name_x_sample_name_for_each_metric
+# handle repertoire metrics all all the isotypes of IGH chain.
+all_sample_IGH_chain_all_metrics_wide_format_dataframe_list <- the_divergent_clonotype_dataframe_list %>%
+    lapply(., calculate_IGH_isotype_proportion)
 
-individual_metrics_dataframe_list
+all_sample_IGH_chain_all_metrics_wide_format_dataframe_list
+
+all_sample_IGH_chain_all_metrics_wide_format_dataframe <- all_sample_IGH_chain_all_metrics_wide_format_dataframe_list %>%
+    combine_all_sample_repertoire_metrics
+
+all_sample_IGH_chain_all_metrics_wide_format_dataframe
+
+all_sample_IGH_chain_individual_metrics_dataframe_list <- all_sample_IGH_chain_all_metrics_wide_format_dataframe %>%
+    get_item_name_x_sample_name_for_each_metric
+
+all_sample_IGH_chain_individual_metrics_dataframe_list
 ```
 
 

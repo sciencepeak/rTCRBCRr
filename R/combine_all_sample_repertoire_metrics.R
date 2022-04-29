@@ -6,6 +6,7 @@
 #' @export
 #' @examples
 #' combine_all_sample_repertoire_metrics(all_sample_all_chain_all_metrics_wide_format_dataframe_list)
+#' combine_all_sample_repertoire_metrics(all_sample_IGH_chain_all_metrics_wide_format_dataframe_list)
 #'
 combine_all_sample_repertoire_metrics <- function(input_dataframe_list) {
 
@@ -18,8 +19,8 @@ combine_all_sample_repertoire_metrics <- function(input_dataframe_list) {
     for (sample_name in names(input_dataframe_list)) {
         current_input_dataframe <- input_dataframe_list[[sample_name]]
 
-        chain_name <- rownames(current_input_dataframe)
-        current_output_dataframe <- cbind(sample_name, chain_name, current_input_dataframe)
+        item_name <- rownames(current_input_dataframe)
+        current_output_dataframe <- cbind(sample_name, item_name, current_input_dataframe)
 
         output_dataframe_list[[sample_name]] <- current_output_dataframe
     }
@@ -31,7 +32,7 @@ combine_all_sample_repertoire_metrics <- function(input_dataframe_list) {
 
     # Tidyverse style code, abandoned.
     # output_combined_dataframe <- input_dataframe_list %>%
-    #     purrr::map(., ~ tibble::rownames_to_column(.x, var = "chain_name")) %>%
+    #     purrr::map(., ~ tibble::rownames_to_column(.x, var = "item_name")) %>%
     #     purrr::imap(., ~ tibble::add_column(.x, sample_name = .y, .before = 1)) %>%
     #     dplyr::bind_rows(.)
     # output_combined_dataframe

@@ -132,50 +132,77 @@ divergent_clonotype_dataframe_list <- raw_clonotype_dataframe_list %>%
     lapply(., merge_convergent_clonotype)
 ```
 
-#### Calculate and merge repertoire metrics for each sample in the list
+### Calculate and merge repertoire metrics by chains for each sample in the list
 
-This step consists of two functions.
-
-1.  compute_repertoire_metrics_by_chain_name
-2.  combine_all_sample_repertoire_metrics
+This step consists of three functions.
 
 ``` r
-all_sample_all_chain_all_metrics_wide_dataframe <- divergent_clonotype_dataframe_list %>%
-    lapply(., compute_repertoire_metrics_by_chain_name) %>%
+# handle repertoire metrics for all the chains.
+all_sample_all_chain_all_metrics_wide_format_dataframe_list <- the_divergent_clonotype_dataframe_list %>%
+    lapply(., compute_repertoire_metrics_by_chain_name)
+
+all_sample_all_chain_all_metrics_wide_format_dataframe_list
+#> $sample_01
+#>     diversity  clonality richness  evenness       median
+#> IGH 5.4161872 0.26283295     1552 0.7371670 0.0001509510
+#> IGK 5.2677388 0.28931127     1656 0.7106887 0.0000908224
+#> IGL 4.8949171 0.25490053      713 0.7450995 0.0004132231
+#> TRA 4.3018929 0.06585582      100 0.9341442 0.0064377682
+#> TRB 4.8358496 0.08467479      197 0.9153252 0.0036429872
+#> TRD 0.6730117 0.02904941        2 0.9709506 0.5000000000
+#> TRG 0.6931472 0.00000000        2 1.0000000 0.5000000000
+#> 
+#> $sample_02
+#>     diversity  clonality richness  evenness       median
+#> IGH 5.3401961 0.28075859     1677 0.7192414 9.231905e-05
+#> IGK 4.5087736 0.40269721     1898 0.5973028 4.043917e-05
+#> IGL 4.7761543 0.28333416      784 0.7166658 1.851338e-04
+#> TRA 3.7682140 0.07196974       58 0.9280303 1.398601e-02
+#> TRB 3.8933793 0.11402336       81 0.8859766 9.174312e-03
+#> TRD 0.5004024 0.27807191        2 0.7219281 5.000000e-01
+#> TRG        NA         NA       NA        NA           NA
+#> 
+#> $sample_03
+#>     diversity clonality richness  evenness       median
+#> IGH 3.3401373 0.5400036     1424 0.4599964 1.032684e-04
+#> IGK 5.4716100 0.1767547      770 0.8232453 4.581552e-04
+#> IGL 2.5747289 0.6218047      905 0.3781953 6.578731e-05
+#> TRA 4.0981274 0.1194323      105 0.8805677 5.917160e-03
+#> TRB 3.9120015 0.2282353      159 0.7717647 2.816901e-03
+#> TRD        NA        NA       NA        NA           NA
+#> TRG 0.5982696 0.1368794        2 0.8631206 5.000000e-01
+
+all_sample_all_chain_all_metrics_wide_format_dataframe <- all_sample_all_chain_all_metrics_wide_format_dataframe_list %>%
     combine_all_sample_repertoire_metrics
 
-all_sample_all_chain_all_metrics_wide_dataframe
-#>    sample_name chain_name diversity  clonality richness  evenness       median
-#> 1    sample_01        IGH 5.4161872 0.26283295     1552 0.7371670 1.509510e-04
-#> 2    sample_01        IGK 5.2677388 0.28931127     1656 0.7106887 9.082240e-05
-#> 3    sample_01        IGL 4.8949171 0.25490053      713 0.7450995 4.132231e-04
-#> 4    sample_01        TRA 4.3018929 0.06585582      100 0.9341442 6.437768e-03
-#> 5    sample_01        TRB 4.8358496 0.08467479      197 0.9153252 3.642987e-03
-#> 6    sample_01        TRD 0.6730117 0.02904941        2 0.9709506 5.000000e-01
-#> 7    sample_01        TRG 0.6931472 0.00000000        2 1.0000000 5.000000e-01
-#> 8    sample_02        IGH 5.3401961 0.28075859     1677 0.7192414 9.231905e-05
-#> 9    sample_02        IGK 4.5087736 0.40269721     1898 0.5973028 4.043917e-05
-#> 10   sample_02        IGL 4.7761543 0.28333416      784 0.7166658 1.851338e-04
-#> 11   sample_02        TRA 3.7682140 0.07196974       58 0.9280303 1.398601e-02
-#> 12   sample_02        TRB 3.8933793 0.11402336       81 0.8859766 9.174312e-03
-#> 13   sample_02        TRD 0.5004024 0.27807191        2 0.7219281 5.000000e-01
-#> 14   sample_02        TRG        NA         NA       NA        NA           NA
-#> 15   sample_03        IGH 3.3401373 0.54000361     1424 0.4599964 1.032684e-04
-#> 16   sample_03        IGK 5.4716100 0.17675466      770 0.8232453 4.581552e-04
-#> 17   sample_03        IGL 2.5747289 0.62180471      905 0.3781953 6.578731e-05
-#> 18   sample_03        TRA 4.0981274 0.11943225      105 0.8805677 5.917160e-03
-#> 19   sample_03        TRB 3.9120015 0.22823526      159 0.7717647 2.816901e-03
-#> 20   sample_03        TRD        NA         NA       NA        NA           NA
-#> 21   sample_03        TRG 0.5982696 0.13687943        2 0.8631206 5.000000e-01
-```
+all_sample_all_chain_all_metrics_wide_format_dataframe
+#>    sample_name item_name diversity  clonality richness  evenness       median
+#> 1    sample_01       IGH 5.4161872 0.26283295     1552 0.7371670 1.509510e-04
+#> 2    sample_01       IGK 5.2677388 0.28931127     1656 0.7106887 9.082240e-05
+#> 3    sample_01       IGL 4.8949171 0.25490053      713 0.7450995 4.132231e-04
+#> 4    sample_01       TRA 4.3018929 0.06585582      100 0.9341442 6.437768e-03
+#> 5    sample_01       TRB 4.8358496 0.08467479      197 0.9153252 3.642987e-03
+#> 6    sample_01       TRD 0.6730117 0.02904941        2 0.9709506 5.000000e-01
+#> 7    sample_01       TRG 0.6931472 0.00000000        2 1.0000000 5.000000e-01
+#> 8    sample_02       IGH 5.3401961 0.28075859     1677 0.7192414 9.231905e-05
+#> 9    sample_02       IGK 4.5087736 0.40269721     1898 0.5973028 4.043917e-05
+#> 10   sample_02       IGL 4.7761543 0.28333416      784 0.7166658 1.851338e-04
+#> 11   sample_02       TRA 3.7682140 0.07196974       58 0.9280303 1.398601e-02
+#> 12   sample_02       TRB 3.8933793 0.11402336       81 0.8859766 9.174312e-03
+#> 13   sample_02       TRD 0.5004024 0.27807191        2 0.7219281 5.000000e-01
+#> 14   sample_02       TRG        NA         NA       NA        NA           NA
+#> 15   sample_03       IGH 3.3401373 0.54000361     1424 0.4599964 1.032684e-04
+#> 16   sample_03       IGK 5.4716100 0.17675466      770 0.8232453 4.581552e-04
+#> 17   sample_03       IGL 2.5747289 0.62180471      905 0.3781953 6.578731e-05
+#> 18   sample_03       TRA 4.0981274 0.11943225      105 0.8805677 5.917160e-03
+#> 19   sample_03       TRB 3.9120015 0.22823526      159 0.7717647 2.816901e-03
+#> 20   sample_03       TRD        NA         NA       NA        NA           NA
+#> 21   sample_03       TRG 0.5982696 0.13687943        2 0.8631206 5.000000e-01
 
-### Separate the all_sample_all_chain_all_metrics_wide_dataframe by individual metrics.
+all_sample_all_chain_individual_metrics_dataframe_list <- all_sample_all_chain_all_metrics_wide_format_dataframe %>%
+    get_item_name_x_sample_name_for_each_metric
 
-``` r
-individual_metrics_dataframe_list <- all_sample_all_chain_all_metrics_wide_dataframe %>%
-    get_chain_name_x_sample_name_for_each_metric
-
-individual_metrics_dataframe_list
+all_sample_all_chain_individual_metrics_dataframe_list
 #> $diversity
 #>     sample_01 sample_02 sample_03
 #> IGH 5.4161872 5.3401961 3.3401373
@@ -225,6 +252,74 @@ individual_metrics_dataframe_list
 #> TRB 0.0036429872 9.174312e-03 2.816901e-03
 #> TRD 0.5000000000 5.000000e-01           NA
 #> TRG 0.5000000000           NA 5.000000e-01
+```
+
+### Calculate and merge repertoire metrics by IGH isotypes for each sample in the list
+
+This step consists of three functions.
+
+``` r
+# handle repertoire metrics all all the isotypes of IGH chain.
+all_sample_IGH_chain_all_metrics_wide_format_dataframe_list <- the_divergent_clonotype_dataframe_list %>%
+    lapply(., calculate_IGH_isotype_proportion)
+
+all_sample_IGH_chain_all_metrics_wide_format_dataframe_list
+#> $sample_01
+#>      count   proportion
+#> IGHA   202 0.1828054299
+#> IGHD     1 0.0009049774
+#> IGHG   813 0.7357466063
+#> IGHM    89 0.0805429864
+#> 
+#> $sample_02
+#>      count   proportion
+#> IGHA    11 0.0080941869
+#> IGHD     1 0.0007358352
+#> IGHG  1074 0.7902869757
+#> IGHM   273 0.2008830022
+#> 
+#> $sample_03
+#>      count  proportion
+#> IGHA   416 0.343517754
+#> IGHD     4 0.003303055
+#> IGHG   775 0.639966969
+#> IGHM    16 0.013212221
+
+all_sample_IGH_chain_all_metrics_wide_format_dataframe <- all_sample_IGH_chain_all_metrics_wide_format_dataframe_list %>%
+    combine_all_sample_repertoire_metrics
+
+all_sample_IGH_chain_all_metrics_wide_format_dataframe
+#>    sample_name item_name count   proportion
+#> 1    sample_01      IGHA   202 0.1828054299
+#> 2    sample_01      IGHD     1 0.0009049774
+#> 3    sample_01      IGHG   813 0.7357466063
+#> 4    sample_01      IGHM    89 0.0805429864
+#> 5    sample_02      IGHA    11 0.0080941869
+#> 6    sample_02      IGHD     1 0.0007358352
+#> 7    sample_02      IGHG  1074 0.7902869757
+#> 8    sample_02      IGHM   273 0.2008830022
+#> 9    sample_03      IGHA   416 0.3435177539
+#> 10   sample_03      IGHD     4 0.0033030553
+#> 11   sample_03      IGHG   775 0.6399669694
+#> 12   sample_03      IGHM    16 0.0132122213
+
+all_sample_IGH_chain_individual_metrics_dataframe_list <- all_sample_IGH_chain_all_metrics_wide_format_dataframe %>%
+    get_item_name_x_sample_name_for_each_metric
+
+all_sample_IGH_chain_individual_metrics_dataframe_list
+#> $count
+#>      sample_01 sample_02 sample_03
+#> IGHA       202        11       416
+#> IGHD         1         1         4
+#> IGHG       813      1074       775
+#> IGHM        89       273        16
+#> 
+#> $proportion
+#>         sample_01    sample_02   sample_03
+#> IGHA 0.1828054299 0.0080941869 0.343517754
+#> IGHD 0.0009049774 0.0007358352 0.003303055
+#> IGHG 0.7357466063 0.7902869757 0.639966969
+#> IGHM 0.0805429864 0.2008830022 0.013212221
 ```
 
 ## Clonotype repertoire metrics formulas
@@ -295,7 +390,7 @@ calculate_repertoire_metrics
 #>         "evenness", "median")
 #>     output_vector
 #> }
-#> <bytecode: 0x0000000025866b10>
+#> <bytecode: 0x00000000285e1670>
 #> <environment: namespace:rTCRBCRr>
 ```
 

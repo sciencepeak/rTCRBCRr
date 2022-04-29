@@ -1,14 +1,14 @@
-#' get_chain_name_x_sample_name_for_each_metric
+#' get_item_name_x_sample_name_for_each_metric
 #'
-#' @param input_dataframe a dataframe with repertoire metrics calculated for each chain name
+#' @param input_dataframe a dataframe with repertoire metrics calculated for each item name
 #' @importFrom tidyr pivot_wider
 #' @importFrom tidyselect all_of
-#' @return a list of dataframes that is one single repertoire metric for all chains in all samples
+#' @return a list of dataframes that is one single repertoire metric for all items in all samples
 #' @export
 #' @examples
-#' get_chain_name_x_sample_name_for_each_metric(all_sample_all_chain_all_metrics_wide_format_dataframe)
+#' get_item_name_x_sample_name_for_each_metric(all_sample_all_chain_all_metrics_wide_format_dataframe)
 #'
-get_chain_name_x_sample_name_for_each_metric <- function(input_dataframe) {
+get_item_name_x_sample_name_for_each_metric <- function(input_dataframe) {
 
     # input_dataframe <- all_sample_all_chain_all_metrics_wide_dataframe
 
@@ -17,7 +17,7 @@ get_chain_name_x_sample_name_for_each_metric <- function(input_dataframe) {
     accumulation_list <- list()
 
     for (current_metric in metrics_names) {
-        current_metric_dataframe <- input_dataframe[, c(c("chain_name", "sample_name"), current_metric)]
+        current_metric_dataframe <- input_dataframe[, c(c("item_name", "sample_name"), current_metric)]
 
         # long to wide so that column names are mainly sample names.
         current_new_metric_dataframe <- tidyr::pivot_wider(
@@ -28,8 +28,8 @@ get_chain_name_x_sample_name_for_each_metric <- function(input_dataframe) {
 
         # Set row names to chain name
         current_new_metric_dataframe <- as.data.frame(current_new_metric_dataframe)
-        rownames(current_new_metric_dataframe) <- current_new_metric_dataframe$chain_name
-        current_new_metric_dataframe$chain_name <- NULL
+        rownames(current_new_metric_dataframe) <- current_new_metric_dataframe$item_name
+        current_new_metric_dataframe$item_name <- NULL
 
         accumulation_list[[current_metric]] <- current_new_metric_dataframe
 

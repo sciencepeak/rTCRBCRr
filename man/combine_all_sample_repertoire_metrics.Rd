@@ -17,5 +17,6 @@ combine_all_sample_repertoire_metrics
 }
 \examples{
 combine_all_sample_repertoire_metrics(all_sample_all_chain_all_metrics_wide_format_dataframe_list)
+combine_all_sample_repertoire_metrics(all_sample_IGH_chain_all_metrics_wide_format_dataframe_list)
 
 }
