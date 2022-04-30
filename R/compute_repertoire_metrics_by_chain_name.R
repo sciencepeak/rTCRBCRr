@@ -80,7 +80,10 @@ compute_repertoire_metrics_by_chain_name <- function(input_dataframe) {
         summarize_repertoire_metrics
     )
 
-    summarized_metrics_matrix <- do.call(rbind, summarized_metrics_list)
+    # Sort the names of the list based on the chain names
+    reordered_metrics_list <- summarized_metrics_list[sort(names(summarized_metrics_list))]
+
+    summarized_metrics_matrix <- do.call(rbind, reordered_metrics_list)
     summarized_metrics_dataframe <- as.data.frame(summarized_metrics_matrix)
 
     summarized_metrics_dataframe
