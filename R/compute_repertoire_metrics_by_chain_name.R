@@ -71,19 +71,19 @@ summarize_repertoire_metrics <- function(one_sample_dataframe) {
 #' compute_repertoire_metrics_by_chain_name(convergent_clonotype_merged_dataframe)
 #'
 compute_repertoire_metrics_by_chain_name <- function(input_dataframe) {
-
+    input_dataframe$chain_name <- factor(input_dataframe$chain_name,
+                                         levels = c("IGH", "IGK", "IGL", "TRA", "TRB", "TRD", "TRG"))
+    
     # There is no need to correct proportion based on clones for each chain name,
     # because repertoire metrics calculation only needs the CDR3.aa and Clones columns.
-    summarized_metrics_list <- by(
+    
+    split_metrics_list <- split(
         input_dataframe,
-        list(input_dataframe$chain_name),
-        summarize_repertoire_metrics
+        list(input_dataframe$chain_name)
     )
-
-    # Sort the names of the list based on the chain names
-    reordered_metrics_list <- summarized_metrics_list[sort(names(summarized_metrics_list))]
-
-    summarized_metrics_matrix <- do.call(rbind, reordered_metrics_list)
+    
+    summarized_metrics_list <- lapply(split_metrics_list, summarize_repertoire_metrics)
+    summarized_metrics_matrix <- do.call(rbind, summarized_metrics_list)
     summarized_metrics_dataframe <- as.data.frame(summarized_metrics_matrix)
 
     summarized_metrics_dataframe

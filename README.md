@@ -390,7 +390,7 @@ calculate_repertoire_metrics
 #>         "evenness", "median")
 #>     output_vector
 #> }
-#> <bytecode: 0x00000000255e8cd0>
+#> <bytecode: 0x0000000028569148>
 #> <environment: namespace:rTCRBCRr>
 ```
 

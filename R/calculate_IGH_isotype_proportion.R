@@ -31,7 +31,5 @@ calculate_IGH_isotype_proportion <- function(input_dataframe) {
     rownames(merged_isotype_dataframe) <- merged_isotype_dataframe$isotype_name
     merged_isotype_dataframe$isotype_name <- NULL
 
-    # Sort the dataframe based on the isotype names
-    sorted_isotype_dataframe <- merged_isotype_dataframe[sort(rownames(merged_isotype_dataframe)), ]
-    sorted_isotype_dataframe
+    merged_isotype_dataframe
 }
