@@ -134,7 +134,7 @@ all_sample_IGH_chain_individual_metrics_dataframe_list
 
 ## Clonotype repertoire metrics formulas
 
-The repertoire metrics formula including richness, diversity (Shannon entropy), evenness (Pielou's eveness), clonality, and median (frequency median) were defined as follows, where $p_i$ is the frequency of ${\rm clonotype}_i$ in a sample with $N$ unique clonotypes ([Khunger, Rytlewski et al. 2019](https://doi.org/10.1080/2162402X.2019.1652538), [Looney, Topacio-Hall et al. 2020](https://doi.org/10.3389/fimmu.2019.02985)). $P$ is the frequency vector of unique clonotypes in a sample.
+The repertoire metrics formula including richness, diversity (Shannon entropy), evenness (Pielou's eveness), clonality, and median (frequency median) were defined as follows, where $p_i$ is the frequency of ${\rm clonotype}_i$ in a sample with $N$ unique clonotypes ([Khunger, Rytlewski et al. 2019](https://www.tandfonline.com/doi/full/10.1080/2162402X.2019.1652538), [Looney, Topacio-Hall et al. 2020](https://www.frontiersin.org/articles/10.3389/fimmu.2019.02985/full)). $P$ is the frequency vector of unique clonotypes in a sample.
 
 $$
 richness\ =\ N
@@ -164,5 +164,5 @@ calculate_repertoire_metrics
 
 ## Acknowledgements
 
-The [hexagon](https://github.com/terinjokes/StickersStandard) logo of the package was created with the help of the package [hexSticker](https://github.com/GuangchuangYu/hexSticker). The math formula was written with the help of recognition tool [MyScript](https://webdemo.myscript.com/). The latex formula in markdown was inspired by [rmd4sci](https://rmd4sci.njtierney.com/math). The code in this study was inspired by the [UCSB R tutorial note](http://traits-dgs.nceas.ucsb.edu/workspace/r/r-tutorial-for-measuring-species-diversity/Measuring Diversity in R.pdf/attachment_download/file), [LymphoSeq script](https://rdrr.io/bioc/LymphoSeq/src/R/clonality.R), and [vegan package](https://cran.r-project.org/web/packages/vegan/vignettes/diversity-vegan.pdf).
+The [hexagon](https://github.com/terinjokes/StickersStandard) logo of the package was created with the help of the package [hexSticker](https://github.com/GuangchuangYu/hexSticker). The math formula was written with the help of recognition tool [MyScript](https://webdemo.myscript.com/). The latex formula in markdown was inspired by [rmd4sci](https://rmd4sci.njtierney.com/math). The code in this study was inspired by the [UCSB R tutorial note](http://traits-dgs.nceas.ucsb.edu/workspace/r/r-tutorial-for-measuring-species-diversity/Measuring Diversity in R.pdf/attachment_download/file), [LymphoSeq script](https://rdrr.io/bioc/LymphoSeq/src/R/clonality.R), and [vegan package](https://cran.r-project.org/package=vegan).
 

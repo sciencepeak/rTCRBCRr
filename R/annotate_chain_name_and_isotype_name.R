@@ -29,7 +29,7 @@ annotate_chain_name_and_isotype_name <- function(input_dataframe) {
         apply(., MARGIN = 1, function(x) x[!grepl("\\*|\\.", x)] %>% unique)
 
     # remove the conflicting non-unique chains in a clone.
-    if (class(derived_chain_labels) == "list") {
+    if (inherits(derived_chain_labels, "list")) {
         unique_chain_index <- sapply(derived_chain_labels, length) == 1
         unique_chain_labels <- derived_chain_labels[unique_chain_index] %>% unlist
         prudential_dataframe <- cleaner_clone_dataframe[unique_chain_index, ]

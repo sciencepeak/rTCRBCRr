@@ -333,8 +333,9 @@ is the frequency of
 in a sample with
 ![N](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;N "N")
 unique clonotypes ([Khunger, Rytlewski et
-al. 2019](https://doi.org/10.1080/2162402X.2019.1652538), [Looney,
-Topacio-Hall et al. 2020](https://doi.org/10.3389/fimmu.2019.02985)).
+al. 2019](https://www.tandfonline.com/doi/full/10.1080/2162402X.2019.1652538),
+[Looney, Topacio-Hall et
+al. 2020](https://www.frontiersin.org/articles/10.3389/fimmu.2019.02985/full)).
 ![P](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;P "P")
 is the frequency vector of unique clonotypes in a sample.
 
@@ -390,7 +391,7 @@ calculate_repertoire_metrics
 #>         "evenness", "median")
 #>     output_vector
 #> }
-#> <bytecode: 0x000000002855fd18>
+#> <bytecode: 0x00000000285572d0>
 #> <environment: namespace:rTCRBCRr>
 ```
 
@@ -405,5 +406,4 @@ was inspired by [rmd4sci](https://rmd4sci.njtierney.com/math). The code
 in this study was inspired by the [UCSB R tutorial
 note](http://traits-dgs.nceas.ucsb.edu/workspace/r/r-tutorial-for-measuring-species-diversity/Measuring%20Diversity%20in%20R.pdf/attachment_download/file),
 [LymphoSeq script](https://rdrr.io/bioc/LymphoSeq/src/R/clonality.R),
-and [vegan
-package](https://cran.r-project.org/web/packages/vegan/vignettes/diversity-vegan.pdf).
+and [vegan package](https://cran.r-project.org/package=vegan).
