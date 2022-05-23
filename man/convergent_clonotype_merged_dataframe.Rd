@@ -8,7 +8,7 @@
 A data frame with m rows and n variables:
 }
 \source{
-\url{https://doi.org/10.3389/fimmu.2019.02985}
+\url{https://www.frontiersin.org/articles/10.3389/fimmu.2019.02985/full}
 }
 \usage{
 convergent_clonotype_merged_dataframe

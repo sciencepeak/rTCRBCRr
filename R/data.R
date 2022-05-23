@@ -35,7 +35,7 @@
 #' @description an example dataframe where convergent clonotypes are merged
 #'
 #' @format A data frame with m rows and n variables:
-#' @source <https://doi.org/10.3389/fimmu.2019.02985>
+#' @source <https://www.frontiersin.org/articles/10.3389/fimmu.2019.02985/full>
 "convergent_clonotype_merged_dataframe"
 
 #' @title a list of dataframe where convergent clonotypes are merged
@@ -43,7 +43,7 @@
 #' @description an list of example dataframes where convergent clonotypes are merged
 #'
 #' @format A list of data frame with m rows and n variables:
-#' @source <https://doi.org/10.3389/fimmu.2019.02985>
+#' @source <https://www.frontiersin.org/articles/10.3389/fimmu.2019.02985/full>
 "the_divergent_clonotype_dataframe_list"
 
 #' @title a dataframe list to combine rowwise.
