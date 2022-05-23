@@ -5,8 +5,7 @@ Authors@R:
     person(given = "Lizhong",
            family = "Ding",
            role = c("aut", "cre"),
-           email = "dinglizhongman@gmail.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           email = "z82xh3f4r@mozmail.com")
 Description: The trust, mixcr, and immunoseq identify the clonotypes.
     The goal of rTCRBCRr is to process the results from these clonotyping tools,
     and analyze the clonotype repertoire metrics.
