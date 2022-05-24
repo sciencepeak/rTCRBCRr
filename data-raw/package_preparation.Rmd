@@ -1,6 +1,6 @@
 ---
-title: "A good title to conceive"
-author: "Author: Old Vegetable Bird"
+title: "..."
+author: "Author: ..."
 date: "`r format(Sys.time(), '%F')`"
 output:
     rmarkdown::html_document:
