@@ -40,7 +40,7 @@ file.remove(".git/hooks/pre-commit")
 # Basic setting
 
 ```{r}
-package_name <- "rTCRBCRr"
+package_name <- 'rTCRBCRr'
 
 # available::available(package_name) # Check availability of the package name
 ```

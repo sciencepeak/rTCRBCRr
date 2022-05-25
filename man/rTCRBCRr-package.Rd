@@ -4,14 +4,14 @@
 \name{rTCRBCRr-package}
 \alias{rTCRBCRr}
 \alias{rTCRBCRr-package}
-\title{rTCRBCRr: Downstream Analysis of the Detected Clonotype}
+\title{rTCRBCRr: Repertoire Analysis of the Detected Clonotype}
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-The trust, mixcr, and immunoseq identify the clonotypes. The goal of rTCRBCRr is to process the results from these clonotyping tools, and analyze the clonotype repertoire metrics.
+The 'TRUST4', 'MiXCR', and 'immunoSEQ' identify the clonotypes. The goal of 'rTCRBCRr' is to process the results from these clonotyping tools, and analyze the clonotype repertoire metrics based on chain names and IGH isotypes. The manuscript is still under preparation for publication for now. The references describing the methods in this package will be added later.
 }
 \author{
-\strong{Maintainer}: Lizhong Ding \email{dinglizhongman@gmail.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
+\strong{Maintainer}: Lizhong Ding \email{z82xh3f4r@mozmail.com}
 
 }
 \keyword{internal}

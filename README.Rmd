@@ -23,7 +23,7 @@ The goal of rTCRBCRr is to process the results from clonotyping tools such as tr
 
 ## Installation
 
-You can **NOT** install the released version of rTCRBCRr from [CRAN](https://CRAN.R-project.org) with:
+After the package is accepted by the [CRAN](https://CRAN.R-project.org), you can **THEN** install the released version of rTCRBCRr from CRAN with:
 
 ``` r
 install.packages("rTCRBCRr")

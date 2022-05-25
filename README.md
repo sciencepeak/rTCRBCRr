@@ -12,8 +12,9 @@ metrics
 
 ## Installation
 
-You can **NOT** install the released version of rTCRBCRr from
-[CRAN](https://CRAN.R-project.org) with:
+After the package is accepted by the [CRAN](https://CRAN.R-project.org),
+you can **THEN** install the released version of rTCRBCRr from CRAN
+with:
 
 ``` r
 install.packages("rTCRBCRr")
@@ -391,7 +392,7 @@ calculate_repertoire_metrics
 #>         "evenness", "median")
 #>     output_vector
 #> }
-#> <bytecode: 0x000000002854f420>
+#> <bytecode: 0x00000000131a1380>
 #> <environment: namespace:rTCRBCRr>
 ```
 
