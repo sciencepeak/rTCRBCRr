@@ -42,8 +42,9 @@ library("readr")
 
 ``` r
 present_tool <- c("trust", "mixcr")[1]
-input_paths <- dir(system.file(paste("extdata", present_tool, sep = "/"), package = "rTCRBCRr"), full.names = TRUE)
-input_files <- dir(system.file(paste("extdata", present_tool, sep = "/"), package = "rTCRBCRr"), full.names = FALSE)
+example_data_directory <- system.file(paste("extdata", present_tool, sep = "/"), package = "rTCRBCRr")
+input_paths <- dir(example_data_directory, full.names = TRUE)
+input_files <- dir(example_data_directory, full.names = FALSE)
 input_files
 #> [1] "sample_01.tsv.bz2" "sample_02.tsv.bz2" "sample_03.tsv.bz2"
 
@@ -392,7 +393,7 @@ calculate_repertoire_metrics
 #>         "evenness", "median")
 #>     output_vector
 #> }
-#> <bytecode: 0x00000000285491a8>
+#> <bytecode: 0x00000000285a2908>
 #> <environment: namespace:rTCRBCRr>
 ```
 

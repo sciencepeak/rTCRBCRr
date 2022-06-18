@@ -45,8 +45,9 @@ library("readr")
 
 ```{r message=FALSE, warning=FALSE}
 present_tool <- c("trust", "mixcr")[1]
-input_paths <- dir(system.file(paste("extdata", present_tool, sep = "/"), package = "rTCRBCRr"), full.names = TRUE)
-input_files <- dir(system.file(paste("extdata", present_tool, sep = "/"), package = "rTCRBCRr"), full.names = FALSE)
+example_data_directory <- system.file(paste("extdata", present_tool, sep = "/"), package = "rTCRBCRr")
+input_paths <- dir(example_data_directory, full.names = TRUE)
+input_files <- dir(example_data_directory, full.names = FALSE)
 input_files
 
 sample_names <- sub(".tsv.*", "", input_files)
