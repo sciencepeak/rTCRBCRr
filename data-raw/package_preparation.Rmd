@@ -95,27 +95,26 @@ devtools::load_all()
 # prepare internal data for @examples tag of each exported function.
 
 ```{r}
-input_paths <- dir(system.file("extdata", package = "rTCRBCRr"), full.names = TRUE)
-input_files <- dir(system.file("extdata", package = "rTCRBCRr"), full.names = FALSE)
+present_tool <- c("trust", "mixcr")[1]
+input_paths <- dir(system.file(paste("extdata", present_tool, sep = "/"), package = "rTCRBCRr"), full.names = TRUE)
+input_files <- dir(system.file(paste("extdata", present_tool, sep = "/"), package = "rTCRBCRr"), full.names = FALSE)
 input_files
-#> [1] "sample_01_report.tsv.bz2" "sample_02_report.tsv.bz2"
-#> [3] "sample_03_report.tsv.bz2"
 
-sample_names <- sub("_report.tsv.*", "", input_files)
+sample_names <- sub(".tsv.*", "", input_files)
 sample_names
-#> [1] "sample_01" "sample_02" "sample_03"
 
 raw_clonotype_dataframe_list <- lapply(input_paths, readr::read_tsv) %>%
     magrittr::set_names(., value = sample_names)
+raw_clonotype_dataframe_list
 ```
 
 # Prepare individual example data.
 
 ```{r}
-raw_trust_clonotype_dataframe <- raw_clonotype_dataframe_list[["sample_01"]]
+raw_input_clonotype_dataframe <- raw_clonotype_dataframe_list[["sample_01"]]
 
-immunarch_style_dataframe <- raw_trust_clonotype_dataframe %>%
-    format_clonotype_to_immunarch_style(., clonotyping_tool = "trust")
+immunarch_style_dataframe <- raw_input_clonotype_dataframe %>%
+    format_clonotype_to_immunarch_style(., clonotyping_tool = present_tool)
 
 nonproductive_CDR3aa_removed_dataframe <- immunarch_style_dataframe %>%
     remove_nonproductive_CDR3aa
@@ -126,14 +125,14 @@ chain_separated_dataframe <- nonproductive_CDR3aa_removed_dataframe %>%
 convergent_clonotype_merged_dataframe <- chain_separated_dataframe %>%
     merge_convergent_clonotype
 
-# input_dataframe <- convergent_clonotype_merged_dataframe
+# input_dataframe <- nonproductive_CDR3aa_removed_dataframe
 ```
 
 # Prepare a list of processed dataframes.
 
 ```{r}
 the_divergent_clonotype_dataframe_list <- raw_clonotype_dataframe_list %>%
-    lapply(., format_clonotype_to_immunarch_style, clonotyping_tool = "trust") %>%
+    lapply(., format_clonotype_to_immunarch_style, clonotyping_tool = present_tool) %>%
     lapply(., remove_nonproductive_CDR3aa) %>%
     lapply(., annotate_chain_name_and_isotype_name) %>%
     lapply(., merge_convergent_clonotype)
@@ -182,7 +181,7 @@ all_sample_IGH_chain_individual_metrics_dataframe_list
 # Remember to manully add documentation in the /R/data.R file
 
 ```{r}
-usethis::use_data(raw_trust_clonotype_dataframe, overwrite = T)
+usethis::use_data(raw_input_clonotype_dataframe, overwrite = T)
 usethis::use_data(immunarch_style_dataframe, overwrite = T)
 usethis::use_data(nonproductive_CDR3aa_removed_dataframe, overwrite = T)
 usethis::use_data(chain_separated_dataframe, overwrite = T)

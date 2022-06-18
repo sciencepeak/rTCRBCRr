@@ -41,13 +41,13 @@ library("readr")
 ### Read raw data files (trust generated for example) into a list of data frames
 
 ``` r
-input_paths <- dir(system.file("extdata", package = "rTCRBCRr"), full.names = TRUE)
-input_files <- dir(system.file("extdata", package = "rTCRBCRr"), full.names = FALSE)
+present_tool <- c("trust", "mixcr")[1]
+input_paths <- dir(system.file(paste("extdata", present_tool, sep = "/"), package = "rTCRBCRr"), full.names = TRUE)
+input_files <- dir(system.file(paste("extdata", present_tool, sep = "/"), package = "rTCRBCRr"), full.names = FALSE)
 input_files
-#> [1] "sample_01_report.tsv.bz2" "sample_02_report.tsv.bz2"
-#> [3] "sample_03_report.tsv.bz2"
+#> [1] "sample_01.tsv.bz2" "sample_02.tsv.bz2" "sample_03.tsv.bz2"
 
-sample_names <- sub("_report.tsv.*", "", input_files)
+sample_names <- sub(".tsv.*", "", input_files)
 sample_names
 #> [1] "sample_01" "sample_02" "sample_03"
 
@@ -115,7 +115,7 @@ The tidy-up consists of four steps, namely four functions:
 ``` r
 # If you only want to test one sample, you can process the only sample as follows.
 the_divergent_clonotype_dataframe <- raw_clonotype_dataframe_list[["sample_01"]] %>%
-    format_clonotype_to_immunarch_style(., clonotyping_tool = "trust") %>%
+    format_clonotype_to_immunarch_style(., clonotyping_tool = present_tool) %>%
     remove_nonproductive_CDR3aa %>%
     annotate_chain_name_and_isotype_name %>%
     merge_convergent_clonotype
@@ -127,7 +127,7 @@ divergent_clonotype_dataframe_list <- list(sample_01 = the_divergent_clonotype_d
 # Otherwise, normally you will have multiple samples,
 # then functional style of processing is preferred as follows.
 divergent_clonotype_dataframe_list <- raw_clonotype_dataframe_list %>%
-    lapply(., format_clonotype_to_immunarch_style, clonotyping_tool = "trust") %>%
+    lapply(., format_clonotype_to_immunarch_style, clonotyping_tool = present_tool) %>%
     lapply(., remove_nonproductive_CDR3aa) %>%
     lapply(., annotate_chain_name_and_isotype_name) %>%
     lapply(., merge_convergent_clonotype)
@@ -392,7 +392,7 @@ calculate_repertoire_metrics
 #>         "evenness", "median")
 #>     output_vector
 #> }
-#> <bytecode: 0x00000000131a1380>
+#> <bytecode: 0x00000000285491a8>
 #> <environment: namespace:rTCRBCRr>
 ```
 

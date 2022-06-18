@@ -42,6 +42,8 @@ annotate_chain_name_and_isotype_name <- function(input_dataframe) {
 
     isotype_labels <- prudential_dataframe$C.name %>%
         replace(., . == ".", NA) %>%
+        replace(., . == "*", NA) %>%
+        gsub(pattern = "\\*.+", replacement = "", x = .) %>%
         gsub(pattern = "\\d+", replacement = "", x = .)
 
     # Annotate chain names and cell type names

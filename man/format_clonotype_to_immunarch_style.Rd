@@ -9,7 +9,7 @@ format_clonotype_to_immunarch_style(input_dataframe, clonotyping_tool)
 \arguments{
 \item{input_dataframe}{a clonotype dataframe from an upstream clonotyping tool}
 
-\item{clonotyping_tool}{choose from c("mixcr, "trust", "immunoseq")}
+\item{clonotyping_tool}{choose from c("mixcr, "trust")}
 }
 \value{
 a clonotype dataframe of immunarch format
@@ -18,6 +18,6 @@ a clonotype dataframe of immunarch format
 Convert clonotype dataframe to immunarch format
 }
 \examples{
-format_clonotype_to_immunarch_style(raw_trust_clonotype_dataframe, "trust")
+format_clonotype_to_immunarch_style(raw_input_clonotype_dataframe, "trust")
 
 }

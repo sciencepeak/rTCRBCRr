@@ -4,7 +4,7 @@
 #'
 #' @format A data frame with m rows and n variables:
 #' @source <https://github.com/liulab-dfci/TRUST4>
-"raw_trust_clonotype_dataframe"
+"raw_input_clonotype_dataframe"
 
 #' @title An converted dataframe to immunarch format
 #'

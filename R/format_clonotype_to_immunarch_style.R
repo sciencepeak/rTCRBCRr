@@ -51,57 +51,6 @@ parse_mixcr <- function(input_clone_dataframe) {
 }
 
 
-#' Parse immunoseq format
-#'
-#' @param input_clone_dataframe Generated from immunoseq program
-#'
-#' @return A dataframe of immunarch format
-#' @import magrittr
-#'
-parse_immunoseq <- function(input_clone_dataframe) {
-
-    immunarch_header_names <- c("Clones", "Proportion", "CDR3.nt",
-                                "CDR3.aa", "V.name", "D.name",
-                                "J.name", "V.end", "D.start",
-                                "D.end", "J.start", "VJ.ins",
-                                "VD.ins", "DJ.ins", "Sequence",
-                                "C.name")
-
-    empty_immunarch_dataframe <- rep(NA, times = length(immunarch_header_names)) %>%
-        as.list %>%
-        magrittr::set_names(., value = immunarch_header_names) %>%
-        as.data.frame %>%
-        .[-1, ]
-
-    if (nrow(input_clone_dataframe) == 0) {
-        formatted_dataframe <- empty_immunarch_dataframe
-    } else {
-        # immune_data_list <- repLoad(input_path)
-        # formatted_dataframe <- immune_data_list$data[[1]]
-
-        formatted_dataframe <- data.frame(
-            Clones = input_clone_dataframe$count ,
-            Proportion = input_clone_dataframe$frequencyCount,
-            CDR3.nt = input_clone_dataframe$nucleotide,
-            CDR3.aa = input_clone_dataframe$aminoAcid,
-            V.name = rep(NA, times = nrow(input_clone_dataframe)),
-            D.name = rep(NA, times = nrow(input_clone_dataframe)),
-            J.name = rep(NA, times = nrow(input_clone_dataframe)),
-            V.end = rep(NA, times = nrow(input_clone_dataframe)),
-            D.start = rep(NA, times = nrow(input_clone_dataframe)),
-            D.end  = rep(NA, times = nrow(input_clone_dataframe)),
-            J.start = rep(NA, times = nrow(input_clone_dataframe)),
-            VJ.ins = rep(NA, times = nrow(input_clone_dataframe)),
-            VD.ins  = rep(NA, times = nrow(input_clone_dataframe)),
-            DJ.ins = rep(NA, times = nrow(input_clone_dataframe)),
-            Sequence = rep(NA, times = nrow(input_clone_dataframe)),
-            C.name = rep(NA, times = nrow(input_clone_dataframe))
-        )
-    }
-
-    formatted_dataframe
-}
-
 #' Parse trust4 format
 #'
 #' @param input_clone_dataframe Generated from trust4 program
@@ -150,12 +99,12 @@ parse_trust4 <- function(input_clone_dataframe) {
 #' Convert clonotype dataframe to immunarch format
 #'
 #' @param input_dataframe a clonotype dataframe from an upstream clonotyping tool
-#' @param clonotyping_tool choose from c("mixcr, "trust", "immunoseq")
+#' @param clonotyping_tool choose from c("mixcr, "trust")
 #' @import magrittr
 #' @return a clonotype dataframe of immunarch format
 #' @export
 #' @examples
-#' format_clonotype_to_immunarch_style(raw_trust_clonotype_dataframe, "trust")
+#' format_clonotype_to_immunarch_style(raw_input_clonotype_dataframe, "trust")
 #'
 format_clonotype_to_immunarch_style <- function(input_dataframe, clonotyping_tool) {
     # Immunarch data format https://immunarch.com/articles/v2_data.html
@@ -182,10 +131,6 @@ format_clonotype_to_immunarch_style <- function(input_dataframe, clonotyping_too
 
     if (clonotyping_tool == "trust") {
         formatted_dataframe <- parse_trust4(input_dataframe)
-    }
-
-    if (clonotyping_tool == "immunoseq") {
-        formatted_dataframe <- parse_immunoseq(input_dataframe)
     }
 
     formatted_dataframe
