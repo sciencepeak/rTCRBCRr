@@ -240,7 +240,7 @@ usethis::use_mit_license()
 
 ```{r}
 usethis::use_github_action("check-standard")
-# The r.yml workflow is created by the github actions webpage by clicking on new workflow and then create it online and then pull down to the local.
+# The r.yml workflow is created by the github actions webpage by clicking on new workflow and then create it online. But the online version lacks the pandoc steps, so we need to use our previously manually adjusted r.yml file and make some other change like "master" to "main" to make the stitched r.yml working.
 ```
 
 
