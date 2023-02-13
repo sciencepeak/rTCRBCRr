@@ -33,7 +33,8 @@ https://mvuorre.github.io/exampleRPackage/
 # Initial commit using Git (for Windows)
 
 ```{r}
-usethis::use_git()
+usethis::use_git() # This is to make commit files locally without Github GUI.
+# There is no need to run this command if you use GitHub GUI desktop.
 file.remove(".git/hooks/pre-commit")
 ```
 
