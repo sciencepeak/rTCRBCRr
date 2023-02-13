@@ -1,0 +1,260 @@
+---
+title: "..."
+author: "Author: ..."
+date: "`r format(Sys.time(), '%F')`"
+output:
+    rmarkdown::html_document:
+        theme: readable
+        highlight: textmate
+        df_print: paged
+---
+
+## Environment setup.
+
+```{r message=F, warning=F}
+rm(list = ls())
+ptm <- proc.time()
+# proc.time() - ptm
+options(stringsAsFactors = F)
+library("magrittr")
+# library("stringr")
+# library("dplyr")
+# library("tidyr")
+# library("tibble")
+# library("purrr")
+# library("readr")
+# 
+# library("fs")
+# library("R.utils") # provide bzip2 function
+```
+
+https://mvuorre.github.io/exampleRPackage/
+
+# Initial commit using Git (for Windows)
+
+```{r}
+usethis::use_git()
+file.remove(".git/hooks/pre-commit")
+```
+
+# Basic setting
+
+```{r}
+package_name <- 'rTCRBCRr'
+
+# available::available(package_name) # Check availability of the package name
+```
+
+# Make the hexagon sticker as the package logo
+
+```{r}
+library(ggplot2)
+library(hexSticker)
+
+dir.create("man/figures")
+
+dir(system.file("man/figures", package = package_name))
+
+image_path <- "man/figures/ggplot2_logo.png"
+
+p <- ggplot(aes(x = Sepal.Width, y = Petal.Length), data = iris) + geom_point()
+p <- p + theme_void() + theme_transparent()
+
+sticker(p, package=package_name, p_size=20, s_x=1, s_y=.75, s_width=1.3, s_height=1,
+        filename=image_path)
+
+usethis::use_logo(image_path)
+```
+
+The helper use_r() creates and/or opens a script below R/. It really shines in a more mature package, when navigating between .R files and the associated test file.
+
+```{r}
+# usethis::use_r()
+```
+
+
+# Adds a CRAN package dependency to DESCRIPTION 
+
+```{r}
+usethis::use_package("magrittr")
+usethis::use_package("tidyr")
+usethis::use_package("tidyselect")
+usethis::use_package("readr")
+```
+
+# Add the directory for package data preparation codes
+
+```{r}
+usethis::use_data_raw()
+```
+
+```{r}
+devtools::load_all()
+```
+
+# prepare internal data for @examples tag of each exported function.
+
+```{r}
+present_tool <- c("trust", "mixcr")[1]
+example_data_directory <- system.file(paste("extdata", present_tool, sep = "/"), package = "rTCRBCRr")
+input_paths <- dir(example_data_directory, full.names = TRUE)
+input_files <- dir(example_data_directory, full.names = FALSE)
+input_files
+
+sample_names <- sub(".tsv.*", "", input_files)
+sample_names
+
+raw_clonotype_dataframe_list <- lapply(input_paths, readr::read_tsv) %>%
+    magrittr::set_names(., value = sample_names)
+raw_clonotype_dataframe_list
+```
+
+# Prepare individual example data.
+
+```{r}
+raw_input_clonotype_dataframe <- raw_clonotype_dataframe_list[["sample_01"]]
+
+immunarch_style_dataframe <- raw_input_clonotype_dataframe %>%
+    format_clonotype_to_immunarch_style(., clonotyping_tool = present_tool)
+
+nonproductive_CDR3aa_removed_dataframe <- immunarch_style_dataframe %>%
+    remove_nonproductive_CDR3aa
+
+chain_separated_dataframe <- nonproductive_CDR3aa_removed_dataframe %>%
+    annotate_chain_name_and_isotype_name
+
+convergent_clonotype_merged_dataframe <- chain_separated_dataframe %>%
+    merge_convergent_clonotype
+
+# input_dataframe <- nonproductive_CDR3aa_removed_dataframe
+```
+
+# Prepare a list of processed dataframes.
+
+```{r}
+the_divergent_clonotype_dataframe_list <- raw_clonotype_dataframe_list %>%
+    lapply(., format_clonotype_to_immunarch_style, clonotyping_tool = present_tool) %>%
+    lapply(., remove_nonproductive_CDR3aa) %>%
+    lapply(., annotate_chain_name_and_isotype_name) %>%
+    lapply(., merge_convergent_clonotype)
+```
+
+
+```{r}
+# handle repertoire metrics for all the chains.
+all_sample_all_chain_all_metrics_wide_format_dataframe_list <- the_divergent_clonotype_dataframe_list %>%
+    lapply(., compute_repertoire_metrics_by_chain_name)
+
+all_sample_all_chain_all_metrics_wide_format_dataframe_list
+
+all_sample_all_chain_all_metrics_wide_format_dataframe <- all_sample_all_chain_all_metrics_wide_format_dataframe_list %>%
+    combine_all_sample_repertoire_metrics
+
+all_sample_all_chain_all_metrics_wide_format_dataframe
+
+all_sample_all_chain_individual_metrics_dataframe_list <- all_sample_all_chain_all_metrics_wide_format_dataframe %>%
+    get_item_name_x_sample_name_for_each_metric
+
+all_sample_all_chain_individual_metrics_dataframe_list
+```
+
+
+```{r}
+# handle repertoire metrics all all the isotypes of IGH chain.
+all_sample_IGH_chain_all_metrics_wide_format_dataframe_list <- the_divergent_clonotype_dataframe_list %>%
+    lapply(., calculate_IGH_isotype_proportion)
+
+all_sample_IGH_chain_all_metrics_wide_format_dataframe_list
+
+all_sample_IGH_chain_all_metrics_wide_format_dataframe <- all_sample_IGH_chain_all_metrics_wide_format_dataframe_list %>%
+    combine_all_sample_repertoire_metrics
+
+all_sample_IGH_chain_all_metrics_wide_format_dataframe
+
+all_sample_IGH_chain_individual_metrics_dataframe_list <- all_sample_IGH_chain_all_metrics_wide_format_dataframe %>%
+    get_item_name_x_sample_name_for_each_metric
+
+all_sample_IGH_chain_individual_metrics_dataframe_list
+```
+
+# Save the object for examples used in function examples.
+
+# Remember to manully add documentation in the /R/data.R file
+
+```{r}
+usethis::use_data(raw_input_clonotype_dataframe, overwrite = T)
+usethis::use_data(immunarch_style_dataframe, overwrite = T)
+usethis::use_data(nonproductive_CDR3aa_removed_dataframe, overwrite = T)
+usethis::use_data(chain_separated_dataframe, overwrite = T)
+usethis::use_data(convergent_clonotype_merged_dataframe, overwrite = T)
+
+usethis::use_data(the_divergent_clonotype_dataframe_list, overwrite = T)
+
+usethis::use_data(all_sample_all_chain_all_metrics_wide_format_dataframe_list, overwrite = T)
+usethis::use_data(all_sample_all_chain_all_metrics_wide_format_dataframe, overwrite = T)
+usethis::use_data(all_sample_all_chain_individual_metrics_dataframe_list, overwrite = T)
+usethis::use_data(all_sample_IGH_chain_all_metrics_wide_format_dataframe_list, overwrite = T)
+usethis::use_data(all_sample_IGH_chain_all_metrics_wide_format_dataframe, overwrite = T)
+usethis::use_data(all_sample_IGH_chain_individual_metrics_dataframe_list, overwrite = T)
+```
+
+# The document for the package itself was created from the description file.
+
+https://combine-australia.github.io/r-pkg-dev/other-documentation.html
+
+```{r}
+usethis::use_package_doc()
+```
+
+# Copy R scripts
+# Copy inst/extdata files
+
+```{r}
+devtools::document()
+```
+
+# Render README rmarkdown file to README.md for github.
+
+You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/master/examples>.
+
+```{r}
+# usethis::use_readme_rmd() # Make README file via rmarkdown.
+devtools::build_readme()
+```
+
+```{r}
+# usethis::use_vignette("Quick_Start")
+devtools::build_vignettes()
+```
+
+
+
+
+```{r}
+usethis::use_mit_license()
+```
+
+```{r}
+usethis::use_github_action("check-standard")
+```
+
+
+```{r}
+devtools::check()
+```
+
+```{r}
+devtools::install()
+```
+
+
+```{r}
+devtools::build()
+```
+
+
+```{r}
+proc.time() - ptm
+```
+
+

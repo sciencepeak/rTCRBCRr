@@ -1,0 +1,28 @@
+Package: rTCRBCRr
+Type: Package
+Title: Repertoire Analysis of the Detected Clonotype
+Version: 0.1.1
+Authors@R:
+    person(given = "Package",
+           family = "Authors",
+           role = c("aut", "cre"),
+           email = "packageauthors@packageauthors.com")
+Description: The 'TRUST4' or 'MiXCR' is used to identify the clonotypes.
+    The goal of 'rTCRBCRr' is to process the results from these clonotyping tools,
+    and analyze the clonotype repertoire metrics based on chain names and IGH isotypes.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.1
+Imports:
+    magrittr,
+    readr,
+    tidyr,
+    tidyselect
+Depends:
+    R (>= 2.10)
+Suggests:
+    rmarkdown,
+    knitr
+VignetteBuilder: knitr
